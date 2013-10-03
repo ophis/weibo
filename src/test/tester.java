@@ -14,11 +14,11 @@ public class tester {
 		um.client.setToken(token);
 		Friendships fm = new Friendships();
 		fm.client.setToken(token);
-			String uid = "2308247745";
+			String uid = "2308247765";
 			long i = Long.parseLong(uid);
 			long startMili=System.currentTimeMillis();
 			int a=0;
-			for(int j=0;j<100;j++)
+			for(int j=0;j<2;j++)
 			{
 				uid = String.valueOf(i+j);
 				try {
