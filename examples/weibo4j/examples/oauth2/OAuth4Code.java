@@ -11,14 +11,15 @@ import weibo4j.util.BareBonesBrowserLaunch;
 public class OAuth4Code {
 	public static void main(String [] args) throws WeiboException, IOException{
 		Oauth oauth = new Oauth();
-		BareBonesBrowserLaunch.openURL(oauth.authorize("code",args[0],args[1]));
-		System.out.println(oauth.authorize("code",args[0],args[1]));
+		//BareBonesBrowserLaunch.openURL(oauth.authorize("code",args[0],args[1]));
+//		BareBonesBrowserLaunch.openURL(oauth.authorize("code"," ","all"));
+		System.out.println(oauth.authorize("code"," ","all"));
 		System.out.print("Hit enter when it's done.[Enter]:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String code = br.readLine();
 		Log.logInfo("code: " + code);
 		try{
-			System.out.println(oauth.getAccessTokenByCode(code));
+			System.out.println(oauth.getAccessTokenByCode("8e341240c2812a96649673c23b55fb67").getAccessToken());
 		} catch (WeiboException e) {
 			if(401 == e.getStatusCode()){
 				Log.logInfo("Unable to get the access token.");

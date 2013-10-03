@@ -1,80 +1,406 @@
-0    DEBUG [2013-10-03 14:29:38]  Request:
-1    DEBUG [2013-10-03 14:29:38]  GET:https://api.weibo.com/2/users/show.json
-48   DEBUG [2013-10-03 14:29:38]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
-48   DEBUG [2013-10-03 14:29:38]  API-RemoteIP: 192.168.1.100
-1482 DEBUG [2013-10-03 14:29:39]  Response:
-1482 DEBUG [2013-10-03 14:29:39]  https StatusCode:400
-1482 DEBUG [2013-10-03 14:29:39]  Date:Thu, 03 Oct 2013 18:29:39 GMT
-1482 DEBUG [2013-10-03 14:29:39]  Server:PWS/8.0.16
-1482 DEBUG [2013-10-03 14:29:39]  Transfer-Encoding:chunked
-1483 DEBUG [2013-10-03 14:29:39]  X-Px:nc h0-s54.p9-jfk ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
-1483 DEBUG [2013-10-03 14:29:39]  Content-Type:application/json;charset=UTF-8
-1483 DEBUG [2013-10-03 14:29:39]  Age:0
-1483 DEBUG [2013-10-03 14:29:39]  Via:1.1 varnish
-1483 DEBUG [2013-10-03 14:29:39]  Vary:Accept-Encoding
-1483 DEBUG [2013-10-03 14:29:39]  Api-Server-IP:10.75.5.59
-1483 DEBUG [2013-10-03 14:29:39]  X-Varnish:960653123
-1483 DEBUG [2013-10-03 14:29:39]  Connection:keep-alive
-1485 WARN  [2013-10-03 14:29:39]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
-1486 DEBUG [2013-10-03 14:29:39]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+16189 DEBUG [2013-10-03 17:10:59]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
 
-1489 DEBUG [2013-10-03 14:29:39]  Request:
-1489 DEBUG [2013-10-03 14:29:39]  GET:https://api.weibo.com/2/users/show.json
-1490 DEBUG [2013-10-03 14:29:39]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
-1490 DEBUG [2013-10-03 14:29:39]  API-RemoteIP: 192.168.1.100
-1868 DEBUG [2013-10-03 14:29:40]  Response:
-1868 DEBUG [2013-10-03 14:29:40]  https StatusCode:400
-1868 DEBUG [2013-10-03 14:29:40]  Date:Thu, 03 Oct 2013 18:29:39 GMT
-1868 DEBUG [2013-10-03 14:29:40]  Server:PWS/8.0.16
-1868 DEBUG [2013-10-03 14:29:40]  Transfer-Encoding:chunked
-1868 DEBUG [2013-10-03 14:29:40]  X-Px:nc h0-s54.p9-jfk ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
-1868 DEBUG [2013-10-03 14:29:40]  Content-Type:application/json;charset=UTF-8
-1869 DEBUG [2013-10-03 14:29:40]  Age:0
-1869 DEBUG [2013-10-03 14:29:40]  Via:1.1 varnish
-1869 DEBUG [2013-10-03 14:29:40]  Vary:Accept-Encoding
-1869 DEBUG [2013-10-03 14:29:40]  Api-Server-IP:10.75.5.91
-1869 DEBUG [2013-10-03 14:29:40]  X-Varnish:465239052
-1869 DEBUG [2013-10-03 14:29:40]  Connection:keep-alive
-1869 WARN  [2013-10-03 14:29:40]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
-1870 DEBUG [2013-10-03 14:29:40]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+16189 DEBUG [2013-10-03 17:10:59]  Request:
+16190 DEBUG [2013-10-03 17:10:59]  GET:https://api.weibo.com/2/users/show.json
+16190 DEBUG [2013-10-03 17:10:59]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+16190 DEBUG [2013-10-03 17:10:59]  API-RemoteIP: 192.168.1.101
+16517 DEBUG [2013-10-03 17:10:59]  Response:
+16518 DEBUG [2013-10-03 17:10:59]  https StatusCode:400
+16518 DEBUG [2013-10-03 17:10:59]  Date:Thu, 03 Oct 2013 21:10:59 GMT
+16518 DEBUG [2013-10-03 17:10:59]  Server:PWS/8.0.16
+16518 DEBUG [2013-10-03 17:10:59]  Transfer-Encoding:chunked
+16518 DEBUG [2013-10-03 17:10:59]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n9), nc pek-ag6-n9 ( origin)
+16518 DEBUG [2013-10-03 17:10:59]  Content-Type:application/json;charset=UTF-8
+16518 DEBUG [2013-10-03 17:10:59]  Age:0
+16518 DEBUG [2013-10-03 17:10:59]  Via:1.1 varnish
+16518 DEBUG [2013-10-03 17:10:59]  Vary:Accept-Encoding
+16519 DEBUG [2013-10-03 17:10:59]  Api-Server-IP:10.75.24.202
+16519 DEBUG [2013-10-03 17:10:59]  X-Varnish:316296940
+16519 DEBUG [2013-10-03 17:10:59]  Connection:keep-alive
+16519 WARN  [2013-10-03 17:10:59]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+16520 DEBUG [2013-10-03 17:10:59]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
 
-0    DEBUG [2013-10-03 14:29:53]  Request:
-1    DEBUG [2013-10-03 14:29:53]  GET:https://api.weibo.com/2/users/show.json
-50   DEBUG [2013-10-03 14:29:53]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
-50   DEBUG [2013-10-03 14:29:53]  API-RemoteIP: 192.168.1.100
-1372 DEBUG [2013-10-03 14:29:54]  Response:
-1372 DEBUG [2013-10-03 14:29:54]  https StatusCode:200
-1372 DEBUG [2013-10-03 14:29:54]  Date:Thu, 03 Oct 2013 18:29:54 GMT
-1372 DEBUG [2013-10-03 14:29:54]  Server:PWS/8.0.16
-1373 DEBUG [2013-10-03 14:29:54]  Transfer-Encoding:chunked
-1373 DEBUG [2013-10-03 14:29:54]  X-Px:nc h0-s54.p9-jfk ( pek-ag6-n9), nc pek-ag6-n9 ( origin)
-1373 DEBUG [2013-10-03 14:29:54]  Content-Type:application/json;charset=UTF-8
-1373 DEBUG [2013-10-03 14:29:54]  Age:0
-1373 DEBUG [2013-10-03 14:29:54]  Via:1.1 varnish
-1373 DEBUG [2013-10-03 14:29:54]  Vary:Accept-Encoding
-1373 DEBUG [2013-10-03 14:29:54]  Api-Server-IP:10.75.0.173
-1373 DEBUG [2013-10-03 14:29:54]  X-Varnish:296970183
-1373 DEBUG [2013-10-03 14:29:54]  Connection:keep-alive
-1375 WARN  [2013-10-03 14:29:54]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
-1377 DEBUG [2013-10-03 14:29:54]  {"id":2308247765,"idstr":"2308247765","class":1,"screen_name":"WYK_York","name":"WYK_York","province":"11","city":"2","location":"北京 西城区","description":"全心全意，直面未来","url":"","profile_image_url":"http://tp2.sinaimg.cn/2308247765/50/5666577166/1","profile_url":"yorkwang91","domain":"yorkwang91","weihao":"","gender":"m","followers_count":255,"friends_count":229,"statuses_count":358,"favourites_count":96,"created_at":"Wed Aug 17 15:25:11 +0800 2011","following":true,"allow_all_act_msg":false,"geo_enabled":true,"verified":false,"verified_type":220,"remark":"","status":{"created_at":"Mon Sep 23 21:26:34 +0800 2013","id":3625805232040720,"mid":"3625805232040720","idstr":"3625805232040720","text":"本周开始提高效率做个晨型人，每天用闹钟和洗澡水把自己弄醒[书呆子]奋斗吧少年","source":"<a href=\"http://app.weibo.com/t/feed/9ksdit\" rel=\"nofollow\">iPhone客户端</a>","favorited":false,"truncated":false,"in_reply_to_status_id":"","in_reply_to_user_id":"","in_reply_to_screen_name":"","pic_urls":[],"geo":null,"annotations":[{"client_mblogid":"iPhone-1957C90C-A332-4F1C-82DF-9977AFD7A02A"}],"reposts_count":0,"comments_count":0,"attitudes_count":0,"mlevel":0,"visible":{"type":0,"list_id":0}},"ptype":0,"allow_all_comment":true,"avatar_large":"http://tp2.sinaimg.cn/2308247765/180/5666577166/1","avatar_hd":"http://tp2.sinaimg.cn/2308247765/180/5666577166/1","verified_reason":"","follow_me":true,"online_status":0,"bi_followers_count":163,"lang":"zh-cn","star":0,"mbtype":0,"mbrank":0,"block_word":0}
+16520 DEBUG [2013-10-03 17:10:59]  Request:
+16520 DEBUG [2013-10-03 17:10:59]  GET:https://api.weibo.com/2/users/show.json
+16520 DEBUG [2013-10-03 17:10:59]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+16520 DEBUG [2013-10-03 17:10:59]  API-RemoteIP: 192.168.1.101
+16805 DEBUG [2013-10-03 17:11:00]  Response:
+16805 DEBUG [2013-10-03 17:11:00]  https StatusCode:400
+16805 DEBUG [2013-10-03 17:11:00]  Date:Thu, 03 Oct 2013 21:11:00 GMT
+16806 DEBUG [2013-10-03 17:11:00]  Server:PWS/8.0.16
+16806 DEBUG [2013-10-03 17:11:00]  Transfer-Encoding:chunked
+16806 DEBUG [2013-10-03 17:11:00]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n2), nc pek-ag6-n2 ( origin)
+16806 DEBUG [2013-10-03 17:11:00]  Content-Type:application/json;charset=UTF-8
+16806 DEBUG [2013-10-03 17:11:00]  Age:0
+16806 DEBUG [2013-10-03 17:11:00]  Via:1.1 varnish
+16806 DEBUG [2013-10-03 17:11:00]  Vary:Accept-Encoding
+16806 DEBUG [2013-10-03 17:11:00]  Api-Server-IP:10.75.5.68
+16806 DEBUG [2013-10-03 17:11:00]  X-Varnish:3514106662
+16806 DEBUG [2013-10-03 17:11:00]  Connection:keep-alive
+16806 WARN  [2013-10-03 17:11:00]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+16807 DEBUG [2013-10-03 17:11:00]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
 
-1388 DEBUG [2013-10-03 14:29:54]  Request:
-1388 DEBUG [2013-10-03 14:29:54]  GET:https://api.weibo.com/2/users/show.json
-1389 DEBUG [2013-10-03 14:29:54]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
-1389 DEBUG [2013-10-03 14:29:54]  API-RemoteIP: 192.168.1.100
-1707 DEBUG [2013-10-03 14:29:54]  Response:
-1708 DEBUG [2013-10-03 14:29:54]  https StatusCode:400
-1708 DEBUG [2013-10-03 14:29:54]  Date:Thu, 03 Oct 2013 18:29:54 GMT
-1708 DEBUG [2013-10-03 14:29:54]  Server:PWS/8.0.16
-1708 DEBUG [2013-10-03 14:29:54]  Transfer-Encoding:chunked
-1708 DEBUG [2013-10-03 14:29:54]  X-Px:nc h0-s54.p9-jfk ( pek-ag6-n9), nc pek-ag6-n9 ( origin)
-1708 DEBUG [2013-10-03 14:29:54]  Content-Type:application/json;charset=UTF-8
-1708 DEBUG [2013-10-03 14:29:54]  Age:0
-1709 DEBUG [2013-10-03 14:29:54]  Via:1.1 varnish
-1709 DEBUG [2013-10-03 14:29:54]  Vary:Accept-Encoding
-1709 DEBUG [2013-10-03 14:29:54]  Api-Server-IP:10.75.5.66
-1709 DEBUG [2013-10-03 14:29:54]  X-Varnish:296970773
-1709 DEBUG [2013-10-03 14:29:54]  Connection:keep-alive
-1709 WARN  [2013-10-03 14:29:54]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
-1710 DEBUG [2013-10-03 14:29:54]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+16807 DEBUG [2013-10-03 17:11:00]  Request:
+16807 DEBUG [2013-10-03 17:11:00]  GET:https://api.weibo.com/2/users/show.json
+16808 DEBUG [2013-10-03 17:11:00]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+16808 DEBUG [2013-10-03 17:11:00]  API-RemoteIP: 192.168.1.101
+17091 DEBUG [2013-10-03 17:11:00]  Response:
+17091 DEBUG [2013-10-03 17:11:00]  https StatusCode:400
+17091 DEBUG [2013-10-03 17:11:00]  Date:Thu, 03 Oct 2013 21:11:00 GMT
+17091 DEBUG [2013-10-03 17:11:00]  Server:PWS/8.0.16
+17091 DEBUG [2013-10-03 17:11:00]  Transfer-Encoding:chunked
+17091 DEBUG [2013-10-03 17:11:00]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n2), nc pek-ag6-n2 ( origin)
+17091 DEBUG [2013-10-03 17:11:00]  Content-Type:application/json;charset=UTF-8
+17091 DEBUG [2013-10-03 17:11:00]  Age:0
+17091 DEBUG [2013-10-03 17:11:00]  Via:1.1 varnish
+17091 DEBUG [2013-10-03 17:11:00]  Vary:Accept-Encoding
+17092 DEBUG [2013-10-03 17:11:00]  Api-Server-IP:10.75.5.94
+17092 DEBUG [2013-10-03 17:11:00]  X-Varnish:484570454
+17092 DEBUG [2013-10-03 17:11:00]  Connection:keep-alive
+17092 WARN  [2013-10-03 17:11:00]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+17092 DEBUG [2013-10-03 17:11:00]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+17093 DEBUG [2013-10-03 17:11:00]  Request:
+17093 DEBUG [2013-10-03 17:11:00]  GET:https://api.weibo.com/2/users/show.json
+17093 DEBUG [2013-10-03 17:11:00]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+17093 DEBUG [2013-10-03 17:11:00]  API-RemoteIP: 192.168.1.101
+17374 DEBUG [2013-10-03 17:11:00]  Response:
+17374 DEBUG [2013-10-03 17:11:00]  https StatusCode:400
+17375 DEBUG [2013-10-03 17:11:00]  Date:Thu, 03 Oct 2013 21:11:00 GMT
+17375 DEBUG [2013-10-03 17:11:00]  Server:PWS/8.0.16
+17375 DEBUG [2013-10-03 17:11:00]  Transfer-Encoding:chunked
+17375 DEBUG [2013-10-03 17:11:00]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+17375 DEBUG [2013-10-03 17:11:00]  Content-Type:application/json;charset=UTF-8
+17375 DEBUG [2013-10-03 17:11:00]  Age:0
+17375 DEBUG [2013-10-03 17:11:00]  Via:1.1 varnish
+17375 DEBUG [2013-10-03 17:11:00]  Vary:Accept-Encoding
+17375 DEBUG [2013-10-03 17:11:00]  Api-Server-IP:10.75.24.202
+17375 DEBUG [2013-10-03 17:11:00]  X-Varnish:316298457
+17376 DEBUG [2013-10-03 17:11:00]  Connection:keep-alive
+17376 WARN  [2013-10-03 17:11:00]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+17376 DEBUG [2013-10-03 17:11:00]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+17377 DEBUG [2013-10-03 17:11:00]  Request:
+17377 DEBUG [2013-10-03 17:11:00]  GET:https://api.weibo.com/2/users/show.json
+17377 DEBUG [2013-10-03 17:11:00]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+17377 DEBUG [2013-10-03 17:11:00]  API-RemoteIP: 192.168.1.101
+17658 DEBUG [2013-10-03 17:11:01]  Response:
+17659 DEBUG [2013-10-03 17:11:01]  https StatusCode:400
+17659 DEBUG [2013-10-03 17:11:01]  Date:Thu, 03 Oct 2013 21:11:00 GMT
+17659 DEBUG [2013-10-03 17:11:01]  Server:PWS/8.0.16
+17659 DEBUG [2013-10-03 17:11:01]  Transfer-Encoding:chunked
+17659 DEBUG [2013-10-03 17:11:01]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+17659 DEBUG [2013-10-03 17:11:01]  Content-Type:application/json;charset=UTF-8
+17659 DEBUG [2013-10-03 17:11:01]  Age:0
+17660 DEBUG [2013-10-03 17:11:01]  Via:1.1 varnish
+17660 DEBUG [2013-10-03 17:11:01]  Vary:Accept-Encoding
+17660 DEBUG [2013-10-03 17:11:01]  Api-Server-IP:10.75.5.62
+17660 DEBUG [2013-10-03 17:11:01]  X-Varnish:3490959481
+17660 DEBUG [2013-10-03 17:11:01]  Connection:keep-alive
+17660 WARN  [2013-10-03 17:11:01]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+17661 DEBUG [2013-10-03 17:11:01]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+17661 DEBUG [2013-10-03 17:11:01]  Request:
+17661 DEBUG [2013-10-03 17:11:01]  GET:https://api.weibo.com/2/users/show.json
+17662 DEBUG [2013-10-03 17:11:01]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+17662 DEBUG [2013-10-03 17:11:01]  API-RemoteIP: 192.168.1.101
+17953 DEBUG [2013-10-03 17:11:01]  Response:
+17953 DEBUG [2013-10-03 17:11:01]  https StatusCode:400
+17953 DEBUG [2013-10-03 17:11:01]  Date:Thu, 03 Oct 2013 21:11:01 GMT
+17954 DEBUG [2013-10-03 17:11:01]  Server:PWS/8.0.16
+17954 DEBUG [2013-10-03 17:11:01]  Transfer-Encoding:chunked
+17954 DEBUG [2013-10-03 17:11:01]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+17954 DEBUG [2013-10-03 17:11:01]  Content-Type:application/json;charset=UTF-8
+17954 DEBUG [2013-10-03 17:11:01]  Age:0
+17954 DEBUG [2013-10-03 17:11:01]  Via:1.1 varnish
+17954 DEBUG [2013-10-03 17:11:01]  Vary:Accept-Encoding
+17954 DEBUG [2013-10-03 17:11:01]  Api-Server-IP:10.75.5.91
+17955 DEBUG [2013-10-03 17:11:01]  X-Varnish:3514108667
+17955 DEBUG [2013-10-03 17:11:01]  Connection:keep-alive
+17955 WARN  [2013-10-03 17:11:01]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+17956 DEBUG [2013-10-03 17:11:01]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+17956 DEBUG [2013-10-03 17:11:01]  Request:
+17956 DEBUG [2013-10-03 17:11:01]  GET:https://api.weibo.com/2/users/show.json
+17956 DEBUG [2013-10-03 17:11:01]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+17957 DEBUG [2013-10-03 17:11:01]  API-RemoteIP: 192.168.1.101
+18240 DEBUG [2013-10-03 17:11:01]  Response:
+18240 DEBUG [2013-10-03 17:11:01]  https StatusCode:400
+18240 DEBUG [2013-10-03 17:11:01]  Date:Thu, 03 Oct 2013 21:11:01 GMT
+18240 DEBUG [2013-10-03 17:11:01]  Server:PWS/8.0.16
+18240 DEBUG [2013-10-03 17:11:01]  Transfer-Encoding:chunked
+18240 DEBUG [2013-10-03 17:11:01]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+18240 DEBUG [2013-10-03 17:11:01]  Content-Type:application/json;charset=UTF-8
+18240 DEBUG [2013-10-03 17:11:01]  Age:0
+18241 DEBUG [2013-10-03 17:11:01]  Via:1.1 varnish
+18241 DEBUG [2013-10-03 17:11:01]  Vary:Accept-Encoding
+18241 DEBUG [2013-10-03 17:11:01]  Api-Server-IP:10.75.24.201
+18241 DEBUG [2013-10-03 17:11:01]  X-Varnish:979977952
+18241 DEBUG [2013-10-03 17:11:01]  Connection:keep-alive
+18241 WARN  [2013-10-03 17:11:01]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+18242 DEBUG [2013-10-03 17:11:01]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+18242 DEBUG [2013-10-03 17:11:01]  Request:
+18242 DEBUG [2013-10-03 17:11:01]  GET:https://api.weibo.com/2/users/show.json
+18242 DEBUG [2013-10-03 17:11:01]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+18242 DEBUG [2013-10-03 17:11:01]  API-RemoteIP: 192.168.1.101
+18536 DEBUG [2013-10-03 17:11:02]  Response:
+18536 DEBUG [2013-10-03 17:11:02]  https StatusCode:400
+18536 DEBUG [2013-10-03 17:11:02]  Date:Thu, 03 Oct 2013 21:11:01 GMT
+18536 DEBUG [2013-10-03 17:11:02]  Server:PWS/8.0.16
+18536 DEBUG [2013-10-03 17:11:02]  Transfer-Encoding:chunked
+18536 DEBUG [2013-10-03 17:11:02]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+18536 DEBUG [2013-10-03 17:11:02]  Content-Type:application/json;charset=UTF-8
+18536 DEBUG [2013-10-03 17:11:02]  Age:0
+18536 DEBUG [2013-10-03 17:11:02]  Via:1.1 varnish
+18536 DEBUG [2013-10-03 17:11:02]  Vary:Accept-Encoding
+18537 DEBUG [2013-10-03 17:11:02]  Api-Server-IP:10.75.5.56
+18537 DEBUG [2013-10-03 17:11:02]  X-Varnish:3490961021
+18537 DEBUG [2013-10-03 17:11:02]  Connection:keep-alive
+18537 WARN  [2013-10-03 17:11:02]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+18537 DEBUG [2013-10-03 17:11:02]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+0    DEBUG [2013-10-03 17:18:24]  Request:
+1    DEBUG [2013-10-03 17:18:24]  POSThttps://api.weibo.com/oauth2/authorize
+0    DEBUG [2013-10-03 17:45:43]  Request:
+1    DEBUG [2013-10-03 17:45:43]  POSThttps://api.weibo.com/oauth2/access_token
+783  DEBUG [2013-10-03 17:45:44]  Response:
+783  DEBUG [2013-10-03 17:45:44]  https StatusCode:200
+783  DEBUG [2013-10-03 17:45:44]  Date:Thu, 03 Oct 2013 21:45:43 GMT
+784  DEBUG [2013-10-03 17:45:44]  Server:PWS/8.0.16
+784  DEBUG [2013-10-03 17:45:44]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+784  DEBUG [2013-10-03 17:45:44]  Cache-Control:no-cache
+784  DEBUG [2013-10-03 17:45:44]  Pragma:No-cache
+784  DEBUG [2013-10-03 17:45:44]  Expires:Thu, 01 Jan 1970 00:00:00 GMT
+784  DEBUG [2013-10-03 17:45:44]  Content-Length:117
+784  DEBUG [2013-10-03 17:45:44]  Content-Type:text/plain;charset=UTF-8
+784  DEBUG [2013-10-03 17:45:44]  Age:0
+784  DEBUG [2013-10-03 17:45:44]  Via:1.1 varnish
+785  DEBUG [2013-10-03 17:45:44]  Api-Server-IP:10.75.2.82
+785  DEBUG [2013-10-03 17:45:44]  X-Varnish:983360531
+785  DEBUG [2013-10-03 17:45:44]  Connection:keep-alive
+788  DEBUG [2013-10-03 17:45:44]  {"access_token":"2.00RKoYFC1KDKmC90515601c1aFoJUE","remind_in":"157679999","expires_in":157679999,"uid":"1914443333"}
+
+796  DEBUG [2013-10-03 17:45:44]  Request:
+796  DEBUG [2013-10-03 17:45:44]  POSThttps://api.weibo.com/2/statuses/update.json
+797  DEBUG [2013-10-03 17:45:44]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+797  DEBUG [2013-10-03 17:45:44]  API-RemoteIP: 192.168.1.101
+1518 DEBUG [2013-10-03 17:45:45]  Response:
+1518 DEBUG [2013-10-03 17:45:45]  https StatusCode:200
+1519 DEBUG [2013-10-03 17:45:45]  Date:Thu, 03 Oct 2013 21:45:44 GMT
+1519 DEBUG [2013-10-03 17:45:45]  Server:PWS/8.0.16
+1519 DEBUG [2013-10-03 17:45:45]  Transfer-Encoding:chunked
+1519 DEBUG [2013-10-03 17:45:45]  X-Px:nc h0-s25.p1-iad ( pek-ag6-n9), nc pek-ag6-n9 ( origin)
+1519 DEBUG [2013-10-03 17:45:45]  Content-Type:application/json;charset=UTF-8
+1519 DEBUG [2013-10-03 17:45:45]  Age:0
+1520 DEBUG [2013-10-03 17:45:45]  Via:1.1 varnish
+1520 DEBUG [2013-10-03 17:45:45]  Vary:Accept-Encoding
+1520 DEBUG [2013-10-03 17:45:45]  Api-Server-IP:10.75.5.55
+1520 DEBUG [2013-10-03 17:45:45]  X-Varnish:983362228
+1520 DEBUG [2013-10-03 17:45:45]  Connection:keep-alive
+1520 WARN  [2013-10-03 17:45:45]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+1522 DEBUG [2013-10-03 17:45:45]  {"created_at":"Fri Oct 04 05:45:45 +0800 2013","id":3629554734637503,"mid":"3629554734637503","idstr":"3629554734637503","text":"测试呢","source":"<a href=\"http://open.weibo.com\" rel=\"nofollow\">未通过审核应用</a>","favorited":false,"truncated":false,"in_reply_to_status_id":"","in_reply_to_user_id":"","in_reply_to_screen_name":"","pic_urls":[],"geo":null,"user":{"id":1914443333,"idstr":"1914443333","class":1,"screen_name":"Ophis_w","name":"Ophis_w","province":"32","city":"1","location":"江苏 南京","description":"理性的文艺流氓","url":"http://www.renren.com/268606629","profile_image_url":"http://tp2.sinaimg.cn/1914443333/50/5647533189/1","profile_url":"u/1914443333","domain":"","weihao":"","gender":"m","followers_count":214,"friends_count":419,"statuses_count":859,"favourites_count":14,"created_at":"Fri Jan 07 19:27:38 +0800 2011","following":false,"allow_all_act_msg":false,"geo_enabled":true,"verified":false,"verified_type":220,"remark":"","ptype":0,"allow_all_comment":true,"avatar_large":"http://tp2.sinaimg.cn/1914443333/180/5647533189/1","avatar_hd":"http://tp2.sinaimg.cn/1914443333/180/5647533189/1","verified_reason":"","follow_me":false,"online_status":0,"bi_followers_count":124,"lang":"zh-cn","star":0,"mbtype":0,"mbrank":0,"block_word":0},"reposts_count":0,"comments_count":0,"attitudes_count":0,"mlevel":0,"visible":{"type":0,"list_id":0}}
+
+0    DEBUG [2013-10-03 17:54:46]  Request:
+0    DEBUG [2013-10-03 17:54:46]  POSThttps://api.weibo.com/oauth2/access_token
+793  DEBUG [2013-10-03 17:54:47]  Response:
+794  DEBUG [2013-10-03 17:54:47]  https StatusCode:200
+794  DEBUG [2013-10-03 17:54:47]  Date:Thu, 03 Oct 2013 21:54:46 GMT
+794  DEBUG [2013-10-03 17:54:47]  Server:PWS/8.0.16
+794  DEBUG [2013-10-03 17:54:47]  X-Px:nc h0-s34.p9-jfk ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+794  DEBUG [2013-10-03 17:54:47]  Cache-Control:no-cache
+794  DEBUG [2013-10-03 17:54:47]  Pragma:No-cache
+794  DEBUG [2013-10-03 17:54:47]  Expires:Thu, 01 Jan 1970 00:00:00 GMT
+794  DEBUG [2013-10-03 17:54:47]  Content-Length:117
+794  DEBUG [2013-10-03 17:54:47]  Content-Type:text/plain;charset=UTF-8
+795  DEBUG [2013-10-03 17:54:47]  Age:0
+795  DEBUG [2013-10-03 17:54:47]  Via:1.1 varnish
+795  DEBUG [2013-10-03 17:54:47]  Api-Server-IP:10.75.25.86
+795  DEBUG [2013-10-03 17:54:47]  X-Varnish:3518334845
+795  DEBUG [2013-10-03 17:54:47]  Connection:keep-alive
+798  DEBUG [2013-10-03 17:54:47]  {"access_token":"2.00RKoYFC1KDKmC90515601c1aFoJUE","remind_in":"157679999","expires_in":157679999,"uid":"1914443333"}
+
+804  DEBUG [2013-10-03 17:54:47]  Request:
+804  DEBUG [2013-10-03 17:54:47]  GET:https://api.weibo.com/2/users/show.json
+806  DEBUG [2013-10-03 17:54:47]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+806  DEBUG [2013-10-03 17:54:47]  API-RemoteIP: 192.168.1.101
+3424 DEBUG [2013-10-03 17:54:50]  Response:
+3424 DEBUG [2013-10-03 17:54:50]  https StatusCode:200
+3424 DEBUG [2013-10-03 17:54:50]  Date:Thu, 03 Oct 2013 21:54:47 GMT
+3424 DEBUG [2013-10-03 17:54:50]  Server:PWS/8.0.16
+3424 DEBUG [2013-10-03 17:54:50]  Transfer-Encoding:chunked
+3425 DEBUG [2013-10-03 17:54:50]  X-Px:nc h0-s34.p9-jfk ( pek-ag6-n9), nc pek-ag6-n9 ( origin)
+3425 DEBUG [2013-10-03 17:54:50]  Content-Type:application/json;charset=UTF-8
+3425 DEBUG [2013-10-03 17:54:50]  Age:0
+3425 DEBUG [2013-10-03 17:54:50]  Via:1.1 varnish
+3425 DEBUG [2013-10-03 17:54:50]  Vary:Accept-Encoding
+3425 DEBUG [2013-10-03 17:54:50]  Api-Server-IP:10.75.0.174
+3425 DEBUG [2013-10-03 17:54:50]  X-Varnish:320539518
+3425 DEBUG [2013-10-03 17:54:50]  Connection:keep-alive
+3426 WARN  [2013-10-03 17:54:50]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+3427 DEBUG [2013-10-03 17:54:50]  {"id":2308247765,"idstr":"2308247765","class":1,"screen_name":"WYK_York","name":"WYK_York","province":"11","city":"2","location":"北京 西城区","description":"全心全意，直面未来","url":"","profile_image_url":"http://tp2.sinaimg.cn/2308247765/50/5666577166/1","profile_url":"yorkwang91","domain":"yorkwang91","weihao":"","gender":"m","followers_count":255,"friends_count":231,"statuses_count":358,"favourites_count":96,"created_at":"Wed Aug 17 15:25:11 +0800 2011","following":true,"allow_all_act_msg":false,"geo_enabled":true,"verified":false,"verified_type":220,"remark":"","status":{"created_at":"Mon Sep 23 21:26:34 +0800 2013","id":3625805232040720,"mid":"3625805232040720","idstr":"3625805232040720","text":"本周开始提高效率做个晨型人，每天用闹钟和洗澡水把自己弄醒[书呆子]奋斗吧少年","source":"<a href=\"http://app.weibo.com/t/feed/9ksdit\" rel=\"nofollow\">iPhone客户端</a>","favorited":false,"truncated":false,"in_reply_to_status_id":"","in_reply_to_user_id":"","in_reply_to_screen_name":"","pic_urls":[],"geo":null,"annotations":[{"client_mblogid":"iPhone-1957C90C-A332-4F1C-82DF-9977AFD7A02A"}],"reposts_count":0,"comments_count":0,"attitudes_count":0,"mlevel":0,"visible":{"type":0,"list_id":0}},"ptype":0,"allow_all_comment":true,"avatar_large":"http://tp2.sinaimg.cn/2308247765/180/5666577166/1","avatar_hd":"http://tp2.sinaimg.cn/2308247765/180/5666577166/1","verified_reason":"","follow_me":true,"online_status":0,"bi_followers_count":163,"lang":"zh-cn","star":0,"mbtype":0,"mbrank":0,"block_word":0}
+
+3435 DEBUG [2013-10-03 17:54:50]  Request:
+3435 DEBUG [2013-10-03 17:54:50]  GET:https://api.weibo.com/2/users/show.json
+3436 DEBUG [2013-10-03 17:54:50]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+3436 DEBUG [2013-10-03 17:54:50]  API-RemoteIP: 192.168.1.101
+3768 DEBUG [2013-10-03 17:54:50]  Response:
+3768 DEBUG [2013-10-03 17:54:50]  https StatusCode:400
+3768 DEBUG [2013-10-03 17:54:50]  Date:Thu, 03 Oct 2013 21:54:50 GMT
+3768 DEBUG [2013-10-03 17:54:50]  Server:PWS/8.0.16
+3768 DEBUG [2013-10-03 17:54:50]  Transfer-Encoding:chunked
+3768 DEBUG [2013-10-03 17:54:50]  X-Px:nc h0-s34.p9-jfk ( pek-ag6-n9), nc pek-ag6-n9 ( origin)
+3768 DEBUG [2013-10-03 17:54:50]  Content-Type:application/json;charset=UTF-8
+3768 DEBUG [2013-10-03 17:54:50]  Age:0
+3768 DEBUG [2013-10-03 17:54:50]  Via:1.1 varnish
+3769 DEBUG [2013-10-03 17:54:50]  Vary:Accept-Encoding
+3769 DEBUG [2013-10-03 17:54:50]  Api-Server-IP:10.75.0.173
+3769 DEBUG [2013-10-03 17:54:50]  X-Varnish:488812880
+3769 DEBUG [2013-10-03 17:54:50]  Connection:keep-alive
+3769 WARN  [2013-10-03 17:54:50]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+3769 DEBUG [2013-10-03 17:54:50]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+3770 DEBUG [2013-10-03 17:54:50]  Request:
+3770 DEBUG [2013-10-03 17:54:50]  GET:https://api.weibo.com/2/users/show.json
+3771 DEBUG [2013-10-03 17:54:50]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+3771 DEBUG [2013-10-03 17:54:50]  API-RemoteIP: 192.168.1.101
+33774 DEBUG [2013-10-03 17:55:20]  Request:
+33774 DEBUG [2013-10-03 17:55:20]  GET:https://api.weibo.com/2/users/show.json
+33775 DEBUG [2013-10-03 17:55:20]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+33775 DEBUG [2013-10-03 17:55:20]  API-RemoteIP: 192.168.1.101
+34559 DEBUG [2013-10-03 17:55:21]  Response:
+34559 DEBUG [2013-10-03 17:55:21]  https StatusCode:400
+34559 DEBUG [2013-10-03 17:55:21]  Date:Thu, 03 Oct 2013 21:55:21 GMT
+34559 DEBUG [2013-10-03 17:55:21]  Server:PWS/8.0.16
+34559 DEBUG [2013-10-03 17:55:21]  Transfer-Encoding:chunked
+34559 DEBUG [2013-10-03 17:55:21]  X-Px:nc h0-s43.p9-jfk ( pek-ag6-n2), nc pek-ag6-n2 ( origin)
+34559 DEBUG [2013-10-03 17:55:21]  Content-Type:application/json;charset=UTF-8
+34560 DEBUG [2013-10-03 17:55:21]  Age:0
+34560 DEBUG [2013-10-03 17:55:21]  Via:1.1 varnish
+34560 DEBUG [2013-10-03 17:55:21]  Vary:Accept-Encoding
+34560 DEBUG [2013-10-03 17:55:21]  Api-Server-IP:10.75.5.67
+34560 DEBUG [2013-10-03 17:55:21]  X-Varnish:3518387404
+34560 DEBUG [2013-10-03 17:55:21]  Connection:keep-alive
+34560 WARN  [2013-10-03 17:55:21]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+34561 DEBUG [2013-10-03 17:55:21]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+34561 DEBUG [2013-10-03 17:55:21]  Request:
+34561 DEBUG [2013-10-03 17:55:21]  GET:https://api.weibo.com/2/users/show.json
+34562 DEBUG [2013-10-03 17:55:21]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+34562 DEBUG [2013-10-03 17:55:21]  API-RemoteIP: 192.168.1.101
+34881 DEBUG [2013-10-03 17:55:21]  Response:
+34882 DEBUG [2013-10-03 17:55:21]  https StatusCode:400
+34882 DEBUG [2013-10-03 17:55:21]  Date:Thu, 03 Oct 2013 21:55:21 GMT
+34882 DEBUG [2013-10-03 17:55:21]  Server:PWS/8.0.16
+34882 DEBUG [2013-10-03 17:55:21]  Transfer-Encoding:chunked
+34882 DEBUG [2013-10-03 17:55:21]  X-Px:nc h0-s43.p9-jfk ( pek-ag6-n2), nc pek-ag6-n2 ( origin)
+34882 DEBUG [2013-10-03 17:55:21]  Content-Type:application/json;charset=UTF-8
+34882 DEBUG [2013-10-03 17:55:21]  Age:0
+34882 DEBUG [2013-10-03 17:55:21]  Via:1.1 varnish
+34883 DEBUG [2013-10-03 17:55:21]  Vary:Accept-Encoding
+34883 DEBUG [2013-10-03 17:55:21]  Api-Server-IP:10.75.24.204
+34883 DEBUG [2013-10-03 17:55:21]  X-Varnish:488860859
+34883 DEBUG [2013-10-03 17:55:21]  Connection:keep-alive
+34883 WARN  [2013-10-03 17:55:21]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+34884 DEBUG [2013-10-03 17:55:21]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+34884 DEBUG [2013-10-03 17:55:21]  Request:
+34884 DEBUG [2013-10-03 17:55:21]  GET:https://api.weibo.com/2/users/show.json
+34884 DEBUG [2013-10-03 17:55:21]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+34885 DEBUG [2013-10-03 17:55:21]  API-RemoteIP: 192.168.1.101
+35199 DEBUG [2013-10-03 17:55:22]  Response:
+35199 DEBUG [2013-10-03 17:55:22]  https StatusCode:400
+35199 DEBUG [2013-10-03 17:55:22]  Date:Thu, 03 Oct 2013 21:55:21 GMT
+35199 DEBUG [2013-10-03 17:55:22]  Server:PWS/8.0.16
+35199 DEBUG [2013-10-03 17:55:22]  Transfer-Encoding:chunked
+35200 DEBUG [2013-10-03 17:55:22]  X-Px:nc h0-s43.p9-jfk ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+35200 DEBUG [2013-10-03 17:55:22]  Content-Type:application/json;charset=UTF-8
+35200 DEBUG [2013-10-03 17:55:22]  Age:0
+35200 DEBUG [2013-10-03 17:55:22]  Via:1.1 varnish
+35200 DEBUG [2013-10-03 17:55:22]  Vary:Accept-Encoding
+35200 DEBUG [2013-10-03 17:55:22]  Api-Server-IP:10.75.5.67
+35200 DEBUG [2013-10-03 17:55:22]  X-Varnish:320591241
+35200 DEBUG [2013-10-03 17:55:22]  Connection:keep-alive
+35200 WARN  [2013-10-03 17:55:22]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+35201 DEBUG [2013-10-03 17:55:22]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+35201 DEBUG [2013-10-03 17:55:22]  Request:
+35201 DEBUG [2013-10-03 17:55:22]  GET:https://api.weibo.com/2/users/show.json
+35201 DEBUG [2013-10-03 17:55:22]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+35201 DEBUG [2013-10-03 17:55:22]  API-RemoteIP: 192.168.1.101
+35525 DEBUG [2013-10-03 17:55:22]  Response:
+35525 DEBUG [2013-10-03 17:55:22]  https StatusCode:400
+35525 DEBUG [2013-10-03 17:55:22]  Date:Thu, 03 Oct 2013 21:55:22 GMT
+35525 DEBUG [2013-10-03 17:55:22]  Server:PWS/8.0.16
+35525 DEBUG [2013-10-03 17:55:22]  Transfer-Encoding:chunked
+35526 DEBUG [2013-10-03 17:55:22]  X-Px:nc h0-s43.p9-jfk ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+35526 DEBUG [2013-10-03 17:55:22]  Content-Type:application/json;charset=UTF-8
+35526 DEBUG [2013-10-03 17:55:22]  Age:0
+35526 DEBUG [2013-10-03 17:55:22]  Via:1.1 varnish
+35526 DEBUG [2013-10-03 17:55:22]  Vary:Accept-Encoding
+35526 DEBUG [2013-10-03 17:55:22]  Api-Server-IP:10.75.5.62
+35526 DEBUG [2013-10-03 17:55:22]  X-Varnish:984269799
+35526 DEBUG [2013-10-03 17:55:22]  Connection:keep-alive
+35526 WARN  [2013-10-03 17:55:22]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+35527 DEBUG [2013-10-03 17:55:22]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+35527 DEBUG [2013-10-03 17:55:22]  Request:
+35527 DEBUG [2013-10-03 17:55:22]  GET:https://api.weibo.com/2/users/show.json
+35527 DEBUG [2013-10-03 17:55:22]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+35527 DEBUG [2013-10-03 17:55:22]  API-RemoteIP: 192.168.1.101
+35857 DEBUG [2013-10-03 17:55:22]  Response:
+35857 DEBUG [2013-10-03 17:55:22]  https StatusCode:400
+35858 DEBUG [2013-10-03 17:55:22]  Date:Thu, 03 Oct 2013 21:55:22 GMT
+35858 DEBUG [2013-10-03 17:55:22]  Server:PWS/8.0.16
+35858 DEBUG [2013-10-03 17:55:22]  Transfer-Encoding:chunked
+35858 DEBUG [2013-10-03 17:55:22]  X-Px:nc h0-s43.p9-jfk ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+35858 DEBUG [2013-10-03 17:55:22]  Content-Type:application/json;charset=UTF-8
+35858 DEBUG [2013-10-03 17:55:22]  Age:0
+35858 DEBUG [2013-10-03 17:55:22]  Via:1.1 varnish
+35858 DEBUG [2013-10-03 17:55:22]  Vary:Accept-Encoding
+35858 DEBUG [2013-10-03 17:55:22]  Api-Server-IP:10.75.5.62
+35858 DEBUG [2013-10-03 17:55:22]  X-Varnish:3495227002
+35858 DEBUG [2013-10-03 17:55:22]  Connection:keep-alive
+35859 WARN  [2013-10-03 17:55:22]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+35859 DEBUG [2013-10-03 17:55:22]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+35859 DEBUG [2013-10-03 17:55:22]  Request:
+35859 DEBUG [2013-10-03 17:55:22]  GET:https://api.weibo.com/2/users/show.json
+35859 DEBUG [2013-10-03 17:55:22]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+35860 DEBUG [2013-10-03 17:55:22]  API-RemoteIP: 192.168.1.101
+36200 DEBUG [2013-10-03 17:55:23]  Response:
+36200 DEBUG [2013-10-03 17:55:23]  https StatusCode:400
+36200 DEBUG [2013-10-03 17:55:23]  Date:Thu, 03 Oct 2013 21:55:22 GMT
+36200 DEBUG [2013-10-03 17:55:23]  Server:PWS/8.0.16
+36200 DEBUG [2013-10-03 17:55:23]  Transfer-Encoding:chunked
+36200 DEBUG [2013-10-03 17:55:23]  X-Px:nc h0-s43.p9-jfk ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+36200 DEBUG [2013-10-03 17:55:23]  Content-Type:application/json;charset=UTF-8
+36201 DEBUG [2013-10-03 17:55:23]  Age:0
+36201 DEBUG [2013-10-03 17:55:23]  Via:1.1 varnish
+36201 DEBUG [2013-10-03 17:55:23]  Vary:Accept-Encoding
+36201 DEBUG [2013-10-03 17:55:23]  Api-Server-IP:10.75.0.174
+36201 DEBUG [2013-10-03 17:55:23]  X-Varnish:488862868
+36201 DEBUG [2013-10-03 17:55:23]  Connection:keep-alive
+36201 WARN  [2013-10-03 17:55:23]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+36202 DEBUG [2013-10-03 17:55:23]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
+
+36202 DEBUG [2013-10-03 17:55:23]  Request:
+36202 DEBUG [2013-10-03 17:55:23]  GET:https://api.weibo.com/2/users/show.json
+36202 DEBUG [2013-10-03 17:55:23]  Authorization: OAuth2 2.00RKoYFC1KDKmC90515601c1aFoJUE
+36202 DEBUG [2013-10-03 17:55:23]  API-RemoteIP: 192.168.1.101
+36546 DEBUG [2013-10-03 17:55:23]  Response:
+36546 DEBUG [2013-10-03 17:55:23]  https StatusCode:400
+36546 DEBUG [2013-10-03 17:55:23]  Date:Thu, 03 Oct 2013 21:55:23 GMT
+36547 DEBUG [2013-10-03 17:55:23]  Server:PWS/8.0.16
+36547 DEBUG [2013-10-03 17:55:23]  Transfer-Encoding:chunked
+36547 DEBUG [2013-10-03 17:55:23]  X-Px:nc h0-s43.p9-jfk ( pek-ag6-n6), nc pek-ag6-n6 ( origin)
+36547 DEBUG [2013-10-03 17:55:23]  Content-Type:application/json;charset=UTF-8
+36547 DEBUG [2013-10-03 17:55:23]  Age:0
+36547 DEBUG [2013-10-03 17:55:23]  Via:1.1 varnish
+36547 DEBUG [2013-10-03 17:55:23]  Vary:Accept-Encoding
+36547 DEBUG [2013-10-03 17:55:23]  Api-Server-IP:10.75.5.93
+36547 DEBUG [2013-10-03 17:55:23]  X-Varnish:3805760244
+36547 DEBUG [2013-10-03 17:55:23]  Connection:keep-alive
+36548 WARN  [2013-10-03 17:55:23]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+36548 DEBUG [2013-10-03 17:55:23]  {"error":"User does not exists!","error_code":20003,"request":"/2/users/show.json"}
 
