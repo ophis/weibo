@@ -2,6 +2,7 @@ package authentication;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.httpclient.Header;
@@ -22,7 +23,7 @@ public class authen {
 		this.tokenList.add("2.00RKoYFC1KDKmC90515601c1aFoJUE");
 	}
 	
-	public static  AccessToken getToken(String username,String password) throws HttpException, IOException
+	public static  AccessToken getToken(String username, String password) throws HttpException, IOException
     {
         String clientId = WeiboConfig.getValue("client_ID") ;
         String redirectURI = WeiboConfig.getValue("redirect_URI") ;
@@ -78,10 +79,14 @@ public class authen {
         }
         return null;
     }
+
 	
-	public String getToken() throws WeiboException, HttpException, IOException {
-		String token = getToken("ophis.w@gmail.com","wrnmbydh7788@2").getAccessToken();
+	public String getToken() throws Exception {
+		
+		String token = getToken("se1curityprivacyincomputating@gmail.com","security&privacy").getAccessToken();
 		return token;
 	}
-	private ArrayList<String> tokenList = new ArrayList<String>();
+	
+	private static ArrayList<String> tokenList = new ArrayList<String>();
+	private static ArrayList<String> accoutList = new ArrayList<String>();
 }

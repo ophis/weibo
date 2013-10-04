@@ -1,6 +1,7 @@
 package core;
 
 import weibo4j.Friendships;
+import weibo4j.Timeline;
 import weibo4j.Users;
 import weibo4j.model.WeiboException;
 import authentication.authen;
@@ -14,8 +15,8 @@ public class userProfileCrawler {
 			token = A.getToken();
 			Users um = new Users();
 			um.client.setToken(token);
-			Friendships fm = new Friendships();
-			fm.client.setToken(token);
+			Timeline tm = new Timeline();
+			tm.client.setToken(token);
 				String uid = "2308247765";
 				long i = Long.parseLong(uid);
 				long startMili=System.currentTimeMillis();
@@ -24,7 +25,7 @@ public class userProfileCrawler {
 				{
 					uid = String.valueOf(i+j);
 					try {
-						um.showUserById(uid);
+						tm.showStatus(uid);
 						a++;
 					} catch (WeiboException e) {
 						// TODO Auto-generated catch block
