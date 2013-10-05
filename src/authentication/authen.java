@@ -1,33 +1,88 @@
 package authentication;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
 import weibo4j.Oauth;
-import weibo4j.http.AccessToken;
+import weibo4j.http.*;
+import weibo4j.model.PostParameter;
+import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
 public class authen {
-	public authen()
-	{
-		
+	private static ArrayList<String> getFromText(String fileName) {
+		File file = new File(fileName);
+		BufferedReader reader = null;
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+            reader = new BufferedReader(new FileReader(file));
+            String tempString = null;
+            while ((tempString = reader.readLine()) != null) {
+                list.add(tempString);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		return list;
 	}
-	
+	private static Integer accountCounter=0;
+	private static Integer keyCounter=0;
 	public static void init()
 	{
-		
+		accoutList = getFromText("config/accounts");
+		keyList = getFromText("config/appKeys");
+	}
+
+	public static int getAcc()
+	{
+		int i=0;
+		synchronized (accountCounter) {
+			i=accountCounter;
+			accountCounter++;
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return i;
+		}
 	}
 	
-	public static  AccessToken getToken(String username, String password) throws HttpException, IOException
+	public static AccessToken getToken() throws Exception
     {
+		int ac=0;
+		int kc=0;
+		synchronized (accountCounter) {
+			ac = accountCounter;
+			kc = keyCounter;
+			accountCounter = (accountCounter++)%accoutList.size();
+			if(accountCounter==0)
+			{
+				synchronized (keyCounter) {
+					keyCounter = (keyCounter++)%keyList.size();
+				}
+			}
+		}
+		String username = accoutList.get(ac);
+		String password="security&privacy";
+		
+		String[] keyStrings = keyList.get(kc).split(";");
+		String key = keyStrings[0];
+		String secret =keyStrings[1];
+		
         String clientId = WeiboConfig.getValue("client_ID") ;
+        
         String redirectURI = WeiboConfig.getValue("redirect_URI") ;
         String url = WeiboConfig.getValue("authorizeURL");
         PostMethod postMethod = new PostMethod(url);
@@ -69,9 +124,17 @@ public class authen {
                     end = retUrl.length();
                 String code = retUrl.substring(begin + 5, end);
                 if (code != null) {
-                    Oauth oauth = new Oauth();
                     try{
-                        AccessToken token = oauth.getAccessTokenByCode(code);
+                    	weibo4j.http.HttpClient client2 = new weibo4j.http.HttpClient();
+                        AccessToken token = new AccessToken(client2.post(
+                				WeiboConfig.getValue("accessTokenURL"),
+                				new PostParameter[] {
+                						new PostParameter("client_id", key),
+                						new PostParameter("client_secret", secret),
+                						new PostParameter("grant_type", "authorization_code"),
+                						new PostParameter("code", code),
+                						new PostParameter("redirect_uri", WeiboConfig
+                								.getValue("redirect_URI")) }, false));;
                         return token;
                     }catch(Exception e){
                         e.printStackTrace();
@@ -81,11 +144,8 @@ public class authen {
         }
         return null;
     }
-	private static ArrayList<String> accoutList = new ArrayList<String>();
-	private static ArrayList<String> keyList = new ArrayList<String>();
+
 	
-	public String getToken() throws Exception {	
-		String token = getToken("se1curityprivacyincomputating@gmail.com","security&privacy").getAccessToken();
-		return token;
-	}
+	private static ArrayList<String> accoutList;
+	private static ArrayList<String> keyList;
 }
