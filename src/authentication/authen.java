@@ -2,7 +2,6 @@ package authentication;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.httpclient.Header;
@@ -13,14 +12,17 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 
 import weibo4j.Oauth;
 import weibo4j.http.AccessToken;
-import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
 public class authen {
 	public authen()
 	{
-		this.tokenList.add("2.00LVk2LE1KDKmCe1cf113918kiyXqC");
-		this.tokenList.add("2.00RKoYFC1KDKmC90515601c1aFoJUE");
+		
+	}
+	
+	public static void init()
+	{
+		
 	}
 	
 	public static  AccessToken getToken(String username, String password) throws HttpException, IOException
@@ -79,14 +81,11 @@ public class authen {
         }
         return null;
     }
-
+	private static ArrayList<String> accoutList = new ArrayList<String>();
+	private static ArrayList<String> keyList = new ArrayList<String>();
 	
-	public String getToken() throws Exception {
-		
+	public String getToken() throws Exception {	
 		String token = getToken("se1curityprivacyincomputating@gmail.com","security&privacy").getAccessToken();
 		return token;
 	}
-	
-	private static ArrayList<String> tokenList = new ArrayList<String>();
-	private static ArrayList<String> accoutList = new ArrayList<String>();
 }

@@ -1,6 +1,5 @@
 package core;
 
-import weibo4j.Friendships;
 import weibo4j.Timeline;
 import weibo4j.Users;
 import weibo4j.model.WeiboException;
