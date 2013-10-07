@@ -17,22 +17,19 @@ import weibo4j.model.PostParameter;
 import weibo4j.util.WeiboConfig;
 
 public class authen {
-	public static void init()
-	{
+	public static void init(){
 		accoutList = getFromText("config/accounts");
 		keyList = getFromText("config/appKeys");
 	}
 	
-	public static AccessToken getToken() throws Exception
-    {
+	public static String getToken() throws Exception{
 		int ac=0;
 		int kc=0;
 		synchronized (accountCounter) {
 			ac = accountCounter;
 			kc = keyCounter;
 			accountCounter = (accountCounter++)%accoutList.size();
-			if(accountCounter==0)
-			{
+			if(accountCounter==0){
 				synchronized (keyCounter) {
 					keyCounter = (keyCounter++)%keyList.size();
 				}
@@ -78,8 +75,7 @@ public class authen {
         }
         //Get token
         Header location = postMethod.getResponseHeader("Location");
-        if (location != null)
-        {
+        if (location != null){
             String retUrl = location.getValue();
             int begin = retUrl.indexOf("code=");
             if (begin != -1) {
@@ -99,7 +95,7 @@ public class authen {
                 						new PostParameter("code", code),
                 						new PostParameter("redirect_uri", WeiboConfig
                 								.getValue("redirect_URI")) }, false));;
-                        return token;
+                        return token.getAccessToken();
                     }catch(Exception e){
                         e.printStackTrace();
                     }
