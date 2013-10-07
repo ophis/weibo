@@ -1,8 +1,7 @@
 package core;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import weibo4j.Friendships;
 import weibo4j.Users;
@@ -13,6 +12,7 @@ import authentication.authen;
 
 public class userProfileCrawler {
 	public static void init(String _rootUid){
+		userProfileCrawler.uidPool = new ArrayBlockingQueue<String>(poolCapacity);
 		rootuid = _rootUid;
 	}
 	
@@ -27,8 +27,10 @@ public class userProfileCrawler {
 	public void crawl(){
 		Friendships fs = new Friendships();
 		Users um = new Users();
+		String token;
+		boolean firstround = true;
 		try {
-			String token = authen.getToken();
+			token = authen.getToken();
 			fs.setToken(token);
 			um.setToken(token);
 			String seedId;
@@ -36,23 +38,32 @@ public class userProfileCrawler {
 				seedId = rootuid;
 				uidPool.add(seedId);
 			}
-			else {
+			while(uidPool.size()>0)
+			{
 				seedId = uidPool.poll();
-			}
-			
-			String screen_name = um.showUserById(seedId).getScreenName();
-			List<User> userlist = fs.getFriendsByScreenName(screen_name).getUsers();
-			for (User user : userlist) {
-					uidPool.add(user.getId());
+				String screen_name = um.showUserById(seedId).getScreenName();
+				List<User> userlist = fs.getFriendsByScreenName(screen_name).getUsers();
+				for (User user : userlist) {
+					String uidString = user.getId();
+					if(uidPool.size()<poolCapacity && !uidPool.contains(uidString))
+					{
+						uidPool.add(user.getId());
+					}
 					//TODO store user data
-					
+					firstround = false;
+				}
 			}
-			
 		} catch (Exception e) {
 			if(e instanceof WeiboException){
 				WeiboException weiboException = (WeiboException)e;
 				if(weiboException.getErrorCode()==10023){
-					this.crawl();
+					if(firstround){ 
+						crawl();
+					}
+					else {
+						System.out.println(uidPool.size());
+						return;
+					}
 				}
 			}
 		}
@@ -60,6 +71,6 @@ public class userProfileCrawler {
 	
 	private static boolean crawl = true;
 	private static int poolCapacity=1500;
-	private static Queue<String> uidPool;
+	private static ArrayBlockingQueue<String> uidPool;
 	private static String rootuid;
 }

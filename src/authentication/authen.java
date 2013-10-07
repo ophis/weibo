@@ -28,10 +28,12 @@ public class authen {
 		synchronized (accountCounter) {
 			ac = accountCounter;
 			kc = keyCounter;
-			accountCounter = (accountCounter++)%accoutList.size();
+			accountCounter++;
+			accountCounter = accountCounter%accoutList.size();
 			if(accountCounter==0){
 				synchronized (keyCounter) {
-					keyCounter = (keyCounter++)%keyList.size();
+					keyCounter++;
+					keyCounter = keyCounter%keyList.size();
 				}
 			}
 		}

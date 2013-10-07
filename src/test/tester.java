@@ -1,6 +1,6 @@
 package test;
 
-import core.userProfileDispatcher;
+import core.userProfileCrawler;
 import authentication.authen;
 
 public class tester {
@@ -9,7 +9,8 @@ public class tester {
     public static void main(String[] args) throws Exception
     {
     	authen.init();
-    	userProfileDispatcher dispatcher = new userProfileDispatcher(" ");
-    	dispatcher.createUidPool();
+    	userProfileCrawler.init("1914443333");
+    	userProfileCrawler crawler = new userProfileCrawler();
+    	crawler.crawl();
     }
 }
