@@ -17,44 +17,10 @@ import weibo4j.model.PostParameter;
 import weibo4j.util.WeiboConfig;
 
 public class authen {
-	private static ArrayList<String> getFromText(String fileName) {
-		File file = new File(fileName);
-		BufferedReader reader = null;
-		ArrayList<String> list = new ArrayList<String>();
-		try {
-            reader = new BufferedReader(new FileReader(file));
-            String tempString = null;
-            while ((tempString = reader.readLine()) != null) {
-                list.add(tempString);
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		return list;
-	}
-	private static Integer accountCounter=0;
-	private static Integer keyCounter=0;
 	public static void init()
 	{
 		accoutList = getFromText("config/accounts");
 		keyList = getFromText("config/appKeys");
-	}
-
-	public static int getAcc()
-	{
-		int i=0;
-		synchronized (accountCounter) {
-			i=accountCounter;
-			accountCounter++;
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return i;
-		}
 	}
 	
 	public static AccessToken getToken() throws Exception
@@ -142,7 +108,26 @@ public class authen {
         }
         return null;
     }
-
+	
+	private static ArrayList<String> getFromText(String _fileName) {
+		File file = new File(_fileName);
+		BufferedReader reader = null;
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+            reader = new BufferedReader(new FileReader(file));
+            String tempString = null;
+            while ((tempString = reader.readLine()) != null) {
+                list.add(tempString);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		return list;
+	}
+	
+	private static Integer accountCounter=0;
+	private static Integer keyCounter=0;
 	private static ArrayList<String> accoutList;
 	private static ArrayList<String> keyList;
 }

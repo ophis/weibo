@@ -1,40 +1,32 @@
 package core;
 
+import java.util.ArrayList;
 
-import weibo4j.Timeline;
 import weibo4j.Users;
-import weibo4j.model.User;
-import weibo4j.model.WeiboException;
+
 import authentication.authen;
 
 public class userProfileCrawler {
-	public static void main(String[] args) throws Exception{
-		// TODO Auto-generated method stub
-		authen.init();
-		String token;
+	public userProfileCrawler(ArrayList<String> _uidArrayList)
+	{
+		this.uidList = _uidArrayList;
+	}
+	
+	public void crawl()
+	{
 		try {
-			token = authen.getToken().getAccessToken();
-			Users um = new Users();
-			um.client.setToken(token);
-			Timeline tm = new Timeline();
-			tm.client.setToken(token);
-			String uid = "2308247765";
-			long i = Long.parseLong(uid);
-			long startMili=System.currentTimeMillis();
-			uid = String.valueOf(i);
-			try {
-				User user;
-				user = um.showUserById(uid);
-				System.out.println(user.getScreenName());
-			} catch (WeiboException e) {
-				// TODO Auto-generated catch block
-						
+			String token = authen.getToken().getAccessToken();
+			Users users = new Users();
+			users.setToken(token);
+			for(int i=0;i<this.uidList.size();i++)
+			{
+				users.showUserByScreenName(uidList.get(i));
+				//TODO store the data
 			}
-			long endMili=System.currentTimeMillis();
-			System.out.println("总耗时为："+(endMili-startMili)+"毫秒");
-		} catch (WeiboException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
+	
+	private ArrayList<String> uidList;
 }
