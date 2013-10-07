@@ -1,5 +1,10 @@
 package core;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -15,7 +20,39 @@ import authentication.Authen;
 public class UserProfileCrawler {
 	public static void init(String _rootUid){
 		UserProfileCrawler.uidPool = new ArrayBlockingQueue<String>(poolCapacity);
-		rootuid = _rootUid;
+		File file = new File("config/uidList");
+		try {
+			if(!file.exists()) return;
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String tempString;
+			while((tempString=reader.readLine())!=null){
+				uidPool.add(tempString);
+			}
+			reader.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		rootuid = uidPool.poll();
+	}
+	
+	public static void storeUidList(){
+		File file = new File("config/uidList");
+		try {
+			if(!file.exists()){
+				file.createNewFile();
+			}
+			FileWriter fWriter = new FileWriter(file);
+			BufferedWriter bWriter = new BufferedWriter(fWriter);
+			for (String uidString : uidPool) {
+				bWriter.write(uidString+"\n");
+			}
+			bWriter.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	public static void start() {
@@ -26,7 +63,7 @@ public class UserProfileCrawler {
 		crawl = false;
 	}
 	
-	public void crawl(){
+	public int crawl(){
 		Friendships fs = new Friendships();
 		Users um = new Users();
 		String token;
@@ -45,13 +82,13 @@ public class UserProfileCrawler {
 			{
 				seedId = uidPool.poll();
 				String screen_name = um.showUserById(seedId).getScreenName();
-				List<User> userlist = fs.getFriendsByScreenName(screen_name).getUsers();
+				List<User> userlist = fs.getFollowersByName(screen_name).getUsers();
 				for (User user : userlist) {
 					String uidString = user.getId();
+					uDal.add2user(uidString, user.getScreenName(), user.getLocation(), user.getGender(),  user.getUrl(), new java.sql.Date(user.getCreatedAt().getTime()));
 					if(uidPool.size()<poolCapacity && !uidPool.contains(uidString))
 					{
 						uidPool.add(uidString);
-						uDal.add2user(uidString, user.getScreenName());
 					}
 					firstround = false;
 				}
@@ -61,15 +98,17 @@ public class UserProfileCrawler {
 				WeiboException weiboException = (WeiboException)e;
 				if(weiboException.getErrorCode()==10023){
 					if(firstround){ 
-						crawl();
+						return crawl();
 					}
 					else {
-						System.out.println(uidPool.size());
-						return;
+						return -1;
 					}
 				}
 			}
+			e.printStackTrace();
+			return -1;
 		}
+		return 0;
 	}
 	
 	private static boolean crawl = true;

@@ -52,8 +52,24 @@ abstract class AbstractDAL {
 		private void createTables(){
 			String createTableOntology = "CREATE TABLE IF NOT EXISTS User " +
 					"(id INT NOT NULL AUTO_INCREMENT," +
-					"uid VARCHAR(50) NOT NULL, " +
-					"screen_name VARCHAR(50) NOT NULL,"+
+					"uid VARCHAR(10) NOT NULL, " +
+					"screen_name VARCHAR(40) NOT NULL,"+
+					"name VARCHAR(10),"+
+					//"class VARCHAR(4),"+
+					//"description VARCHAR(140) CHARACTER SET utf8mb4,"+
+					"url VARCHAR(200),"+
+					"location VARCHAR(20),"+
+					"gender VARCHAR(1),"+
+					"education VARCHAR(200),"+
+					"email VARCHAR(50),"+
+					"qq VARCHAR(12),"+
+					"msn VARCHAR(50),"+
+					"sex_pre VARCHAR(6),"+
+					"relationship_status VARCHAR(6),"+
+					"created_at DATE,"+
+					"allow_all_act_msg BOOLEAN,"+
+					"verified BOOLEAN,"+
+					"allow_all_comment BOOLEAN,"+
 					"PRIMARY KEY(id))";
 			Statement statement;
 			try {
