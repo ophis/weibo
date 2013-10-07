@@ -21,7 +21,6 @@ public class UserDAL extends AbstractDAL{
 	
 	public void add2user(String _uid, String _screenName, String _location, String _gender){
 		try {
-//			String insert = "INSERT INTO Ontology(type,word,rights) VALUES()";
 			PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM User WHERE uid=?");
 			selectStatement.setString(1, _uid);
 			ResultSet result = selectStatement.executeQuery();
