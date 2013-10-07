@@ -12,10 +12,8 @@ import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
-import weibo4j.Oauth;
 import weibo4j.http.*;
 import weibo4j.model.PostParameter;
-import weibo4j.model.WeiboException;
 import weibo4j.util.WeiboConfig;
 
 public class authen {
@@ -145,7 +143,6 @@ public class authen {
         return null;
     }
 
-	
 	private static ArrayList<String> accoutList;
 	private static ArrayList<String> keyList;
 }

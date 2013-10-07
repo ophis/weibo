@@ -14,7 +14,6 @@ public class userProfileCrawler {
 		String token;
 		try {
 			token = authen.getToken().getAccessToken();
-			System.out.println(token);
 			Users um = new Users();
 			um.client.setToken(token);
 			Timeline tm = new Timeline();
@@ -37,6 +36,5 @@ public class userProfileCrawler {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 	}
 }
