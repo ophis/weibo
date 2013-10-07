@@ -1,16 +1,16 @@
 package test;
 
-import core.userProfileCrawler;
-import authentication.authen;
+import core.UserProfileCrawler;
+import authentication.Authen;
 
 public class tester {
 	
 	private int i=0;
     public static void main(String[] args) throws Exception
     {
-    	authen.init();
-    	userProfileCrawler.init("1914443333");
-    	userProfileCrawler crawler = new userProfileCrawler();
+    	Authen.init();
+    	UserProfileCrawler.init("1914443333");
+    	UserProfileCrawler crawler = new UserProfileCrawler();
     	crawler.crawl();
     }
 }

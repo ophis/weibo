@@ -8,11 +8,11 @@ import weibo4j.Users;
 import weibo4j.model.User;
 import weibo4j.model.WeiboException;
 
-import authentication.authen;
+import authentication.Authen;
 
-public class userProfileCrawler {
+public class UserProfileCrawler {
 	public static void init(String _rootUid){
-		userProfileCrawler.uidPool = new ArrayBlockingQueue<String>(poolCapacity);
+		UserProfileCrawler.uidPool = new ArrayBlockingQueue<String>(poolCapacity);
 		rootuid = _rootUid;
 	}
 	
@@ -30,7 +30,7 @@ public class userProfileCrawler {
 		String token;
 		boolean firstround = true;
 		try {
-			token = authen.getToken();
+			token = Authen.getToken();
 			fs.setToken(token);
 			um.setToken(token);
 			String seedId;

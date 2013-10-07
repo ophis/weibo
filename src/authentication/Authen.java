@@ -16,7 +16,7 @@ import weibo4j.http.*;
 import weibo4j.model.PostParameter;
 import weibo4j.util.WeiboConfig;
 
-public class authen {
+public class Authen {
 	public static void init(){
 		accoutList = getFromText("config/accounts");
 		keyList = getFromText("config/appKeys");
