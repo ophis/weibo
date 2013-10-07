@@ -3,6 +3,8 @@ package core;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import dal.UserDAL;
+
 import weibo4j.Friendships;
 import weibo4j.Users;
 import weibo4j.model.User;
@@ -38,6 +40,7 @@ public class UserProfileCrawler {
 				seedId = rootuid;
 				uidPool.add(seedId);
 			}
+			UserDAL uDal = new UserDAL();
 			while(uidPool.size()>0)
 			{
 				seedId = uidPool.poll();
@@ -47,9 +50,9 @@ public class UserProfileCrawler {
 					String uidString = user.getId();
 					if(uidPool.size()<poolCapacity && !uidPool.contains(uidString))
 					{
-						uidPool.add(user.getId());
+						uidPool.add(uidString);
+						uDal.add2user(uidString, user.getScreenName());
 					}
-					//TODO store user data
 					firstround = false;
 				}
 			}
