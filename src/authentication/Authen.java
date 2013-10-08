@@ -69,7 +69,6 @@ public class Authen {
         client.getHostConfiguration().getParams().setParameter("http.default-headers", headers);
         client.executeMethod(postMethod);
         int status = postMethod.getStatusCode();
-        System.out.println(status);
         if (status != 302)
         {
             System.out.println("token refresh failed!");

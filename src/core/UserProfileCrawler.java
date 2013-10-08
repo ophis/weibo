@@ -81,7 +81,7 @@ public class UserProfileCrawler {
 				List<User> userlist = fs.getFollowersByName(seedName).getUsers();
 				for (User user : userlist) {
 					String uameString = user.getScreenName();
-					uDal.add2user(user.getId(), user.getScreenName(), user.getLocation(), user.getGender(),  user.getUrl(), new java.sql.Date(user.getCreatedAt().getTime()));
+					uDal.add2User(user.getId(), user.getScreenName(), user.getLocation(), user.getGender(),  user.getUrl(), new java.sql.Date(user.getCreatedAt().getTime()));
 					if(unamePool.size()<poolCapacity && !unamePool.contains(uameString))
 					{
 						unamePool.add(uameString);

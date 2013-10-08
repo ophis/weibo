@@ -37,13 +37,6 @@ public class Timeline extends Weibo{
 		return Status.constructWapperStatus(client.get(WeiboConfig
 				.getValue("baseURL") + "statuses/public_timeline.json"));
 	}
-
-	public StatusWapper getPublicTimelineByUid(String uid) throws WeiboException {
-		return Status.constructWapperStatus(client.get(
-				WeiboConfig.getValue("baseURL") + "statuses/public_timeline.json", new PostParameter[] {
-						new PostParameter("uid", uid)
-						}));
-	}
 	
 	/**
 	 * 返回最新的公共微博

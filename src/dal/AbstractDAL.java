@@ -50,7 +50,7 @@ abstract class AbstractDAL {
 
 	//create tables if not exists
 		private void createTables(){
-			String createTableOntology = "CREATE TABLE IF NOT EXISTS User " +
+			String createTableUser = "CREATE TABLE IF NOT EXISTS User " +
 					"(id INT NOT NULL AUTO_INCREMENT," +
 					"uid VARCHAR(10) NOT NULL, " +
 					"screen_name VARCHAR(40) NOT NULL,"+
@@ -71,11 +71,16 @@ abstract class AbstractDAL {
 					"verified BOOLEAN,"+
 					"allow_all_comment BOOLEAN,"+
 					"PRIMARY KEY(id))";
+			String createTableTimeline = "CREATE TABLE IF NOT EXISTS Timeline " +
+					"(id INT NOT NULL AUTO_INCREMENT," +
+					"wid VARCHAR(30) NOT NULL, " +
+					"PRIMARY KEY(id))";
 			Statement statement;
 			try {
 				statement = conn.createStatement();
 				System.out.println("Try to create tables if not exists...");
-				statement.executeUpdate(createTableOntology);
+				statement.executeUpdate(createTableUser);
+				statement.executeUpdate(createTableTimeline);
 				System.out.println("Create tables successfully!");
 				statement.close();
 			} catch (SQLException e) {
