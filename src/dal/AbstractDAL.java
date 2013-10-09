@@ -76,7 +76,9 @@ abstract class AbstractDAL {
 					"(id INT NOT NULL AUTO_INCREMENT," +
 					"mid VARCHAR(30) NOT NULL, " +
 					"uid VARCHAR(20) NOT NULL, " +
+					"uscreen_name VARCHAR(40) NOT NULL," +
 					"text LONGTEXT,"+
+					"created_at DATE,"+
 					"inReplyUid VARCHAR(10), " +
 					"PRIMARY KEY(id))";
 			Statement statement;

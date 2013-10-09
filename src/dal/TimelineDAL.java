@@ -48,16 +48,17 @@ public class TimelineDAL extends AbstractDAL{
 			}
 			
 			if(statuslList.size()>0){
-				StringBuffer insertSql = new StringBuffer("INSERT INTO Timeline(mid,uid,text,inReplyUid) VALUES");
+				StringBuffer insertSql = new StringBuffer("INSERT INTO Timeline(mid,uid,text,inReplyUid,uscreen_name,created_at) VALUES");
 				for(int i=0;i<statuslList.size();i++)
 				{
 					if(i==statuslList.size()-1)
-						insertSql.append("(?,?,?,?)");
+						insertSql.append("(?,?,?,?,?,?)");
 					else {
-						insertSql.append("(?,?,?,?),");
+						insertSql.append("(?,?,?,?,?,?),");
 					}
 				}
 				PreparedStatement insertStatement = conn.prepareStatement(insertSql.toString());
+				int count=6;
 				for (int i=0;i<statuslList.size();i++) {
 				//TODO construct sql statement
 					Status s = statuslList.get(i);
@@ -65,10 +66,12 @@ public class TimelineDAL extends AbstractDAL{
 					String mid = s.getMid();
 					String text = s.getText();
 					long inReplyUid = s.getInReplyToUserId();
-					insertStatement.setString(4*i+1, mid);
-					insertStatement.setString(4*i+2, uid);
-					insertStatement.setString(4*i+3, text);
-					insertStatement.setString(4*i+4, Long.toString(inReplyUid));
+					insertStatement.setString(count*i+1, mid);
+					insertStatement.setString(count*i+2, uid);
+					insertStatement.setString(count*i+3, text);
+					insertStatement.setString(count*i+4, Long.toString(inReplyUid));
+					insertStatement.setString(count*i+5, s.getUser().getScreenName());
+					insertStatement.setDate(count*i+6, new java.sql.Date(s.getCreatedAt().getTime()));
 				}
 				insertStatement.execute();
 				insertStatement.close();
