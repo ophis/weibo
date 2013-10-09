@@ -2,10 +2,12 @@ package dal;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import weibo4j.model.Status;
+import weibo4j.model.User;
 
 public class TimelineDAL extends AbstractDAL{
 	public void addAll2Timeline(List<Status> _statusList){
@@ -32,26 +34,33 @@ public class TimelineDAL extends AbstractDAL{
 			}
 			
 			ResultSet results = selectStatement.executeQuery();
+			Object[] status=_statusList.toArray();
 			while(results.next()){
 				String mid = results.getString("mid");
-				int index = mid2pos.get(mid);
-				_statusList.remove(index);
+				status[mid2pos.get(mid)]=null;
 			}
 			selectStatement.close();
-			if(_statusList.size()>0){
+			ArrayList<Status> statuslList = new ArrayList<Status>();
+			for (Object object : status) {
+				if(object!=null){
+					statuslList.add((Status)object);
+				}
+			}
+			
+			if(statuslList.size()>0){
 				StringBuffer insertSql = new StringBuffer("INSERT INTO Timeline(mid,uid,text,inReplyUid) VALUES");
-				for(int i=0;i<_statusList.size();i++)
+				for(int i=0;i<statuslList.size();i++)
 				{
-					if(i==_statusList.size()-1)
+					if(i==statuslList.size()-1)
 						insertSql.append("(?,?,?,?)");
 					else {
 						insertSql.append("(?,?,?,?),");
 					}
 				}
 				PreparedStatement insertStatement = conn.prepareStatement(insertSql.toString());
-				for (int i=0;i<_statusList.size();i++) {
+				for (int i=0;i<statuslList.size();i++) {
 				//TODO construct sql statement
-					Status s = _statusList.get(i);
+					Status s = statuslList.get(i);
 					String uid = s.getUser().getId();
 					String mid = s.getMid();
 					String text = s.getText();
@@ -62,6 +71,7 @@ public class TimelineDAL extends AbstractDAL{
 					insertStatement.setString(4*i+4, Long.toString(inReplyUid));
 				}
 				insertStatement.execute();
+				insertStatement.close();
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -42,6 +42,7 @@ public class UserDAL extends AbstractDAL{
 				user[uid2pos.get(uid)]=null;
 				//uid2user.remove(uid);
 			}
+			selectStatement.close();
 			
 			ArrayList<User> users = new ArrayList<User>();
 			for (Object object : user) {
@@ -79,6 +80,7 @@ public class UserDAL extends AbstractDAL{
 					insertStatement.setDate(6*i+6, date);
 				}
 				insertStatement.execute();
+				insertStatement.close();
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
