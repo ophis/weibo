@@ -1,7 +1,7 @@
-package test;
+package security.test;
 
-import core.TimelineCrawler;
-import authentication.Authen;
+import security.authentication.Authen;
+import security.core.TimelineCrawler;
 
 public class tester {
 	

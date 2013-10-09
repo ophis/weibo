@@ -1,4 +1,4 @@
-package core;
+package security.core;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,13 +8,14 @@ import java.io.FileWriter;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
-import dal.UserDAL;
+import security.authentication.Authen;
+import security.dal.UserDAL;
+
 
 import weibo4j.Friendships;
 import weibo4j.model.User;
 import weibo4j.model.WeiboException;
 
-import authentication.Authen;
 
 public class UserProfileCrawler {
 	public static void init(String _rootUid){

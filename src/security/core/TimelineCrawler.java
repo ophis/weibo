@@ -1,10 +1,11 @@
-package core;
+package security.core;
 
 import java.util.List;
 
-import dal.TimelineDAL;
+import security.authentication.Authen;
+import security.dal.TimelineDAL;
 
-import authentication.Authen;
+
 import weibo4j.Timeline;
 import weibo4j.model.Status;
 import weibo4j.model.StatusWapper;

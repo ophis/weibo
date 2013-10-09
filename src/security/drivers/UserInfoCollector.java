@@ -1,7 +1,7 @@
-package drivers;
+package security.drivers;
 
-import core.UserProfileCrawler;
-import authentication.Authen;
+import security.authentication.Authen;
+import security.core.UserProfileCrawler;
 
 public class UserInfoCollector {
 	public static void main(String[] args) {

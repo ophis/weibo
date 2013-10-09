@@ -1,4 +1,4 @@
-package authentication;
+package security.authentication;
 
 import java.io.BufferedReader;
 import java.io.File;
