@@ -77,7 +77,7 @@ public class UserProfileCrawler {
 				}
 			}
 			UserDAL uDal = new UserDAL();
-			while((seedName = unamePool.poll())!=null)
+			while((seedName = unamePool.poll())!=null && crawl)
 			{
 				List<User> userlist = fs.getFriendsByScreenName(seedName).getUsers();
 				uDal.addAll2Timeline(userlist);
