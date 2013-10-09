@@ -14,8 +14,8 @@ abstract class AbstractDAL {
 		// TODO Auto-generated constructor stub
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/SecurityAndPrivacy?"+
-												"user=root&password=wrnmbydh&useUnicode=true&characterEncoding=utf8");
-			System.out.println("Link to database(InfoService) successful!");
+												"user=root&password=wrnmbydh&useUnicode=true");
+			System.out.println("Link to database(SecurityAndPrivacy) successful!");
 			this.createTables();
 		} catch (SQLException e) {
 			// try to create a database
@@ -30,14 +30,15 @@ abstract class AbstractDAL {
 								"user=root&password=wrnmbydh");
 						if(conn!=null){
 							Statement statement = conn.createStatement();
-							statement.executeUpdate("CREATE DATABASE SecurityAndPrivacy charset utf8");
+							statement.executeUpdate("CREATE DATABASE SecurityAndPrivacy charset utf8mb4");
 							System.out.println("Create database(SecurityAndPrivacy) successful!");
 							conn = DriverManager.getConnection("jdbc:mysql://localhost/SecurityAndPrivacy?"+
-										"user=root&password=wrnmbydh&useUnicode=true&characterEncoding=utf8");
+										"user=root&password=wrnmbydh&useUnicode=true");
 							System.out.println("Link to new database(SecurityAndPrivacy) successful!");
 							this.createTables();
 						}
 					} catch (SQLException e1) {
+						e1.printStackTrace();
 						System.out.println("Create database failed!");
 					}
 				}
@@ -52,7 +53,7 @@ abstract class AbstractDAL {
 		private void createTables(){
 			String createTableUser = "CREATE TABLE IF NOT EXISTS User " +
 					"(id INT NOT NULL AUTO_INCREMENT," +
-					"uid VARCHAR(10) NOT NULL, " +
+					"uid VARCHAR(20) NOT NULL, " +
 					"screen_name VARCHAR(40) NOT NULL,"+
 					"name VARCHAR(10),"+
 					//"class VARCHAR(4),"+
@@ -73,7 +74,10 @@ abstract class AbstractDAL {
 					"PRIMARY KEY(id))";
 			String createTableTimeline = "CREATE TABLE IF NOT EXISTS Timeline " +
 					"(id INT NOT NULL AUTO_INCREMENT," +
-					"wid VARCHAR(30) NOT NULL, " +
+					"mid VARCHAR(30) NOT NULL, " +
+					"uid VARCHAR(20) NOT NULL, " +
+					"text LONGTEXT,"+
+					"inReplyUid VARCHAR(10), " +
 					"PRIMARY KEY(id))";
 			Statement statement;
 			try {

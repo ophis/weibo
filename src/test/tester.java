@@ -2,7 +2,10 @@ package test;
 
 import java.util.HashSet;
 
+import weibo4j.Timeline;
+
 import core.TimelineCrawler;
+import dal.TimelineDAL;
 import authentication.Authen;
 
 public class tester {
@@ -10,9 +13,9 @@ public class tester {
     public static void main(String[] args) throws Exception
     {
     	Authen.init();
-    	HashSet<String> set = new HashSet<String>();
-    	for(int i=0;i<70;i++)
-    		set.add(Authen.getToken());
-    	System.out.println(set.size());
+    	TimelineCrawler tc = new TimelineCrawler();
+    	tc.crawlPublic();
+//    	TimelineDAL tDal  = new TimelineDAL();
+//    	tDal.select();
     }
 }

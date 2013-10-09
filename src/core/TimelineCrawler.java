@@ -2,6 +2,8 @@ package core;
 
 import java.util.List;
 
+import dal.TimelineDAL;
+
 import authentication.Authen;
 import weibo4j.Timeline;
 import weibo4j.model.Status;
@@ -12,10 +14,10 @@ public class TimelineCrawler {
 		Timeline tm = new Timeline();
     	try {
 			tm.setToken(Authen.getToken());
-	    	StatusWapper sw = tm.getPublicTimeline();
+	    	StatusWapper sw = tm.getPublicTimeline(200,0);
 	    	List<Status> status = sw.getStatuses();
-	    	Status status2 = status.get(0);
-	    	System.out.println(status2);
+	    	TimelineDAL td = new TimelineDAL();
+	    	td.addAll2Timeline(status);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
