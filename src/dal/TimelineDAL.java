@@ -8,20 +8,6 @@ import java.util.List;
 import weibo4j.model.Status;
 
 public class TimelineDAL extends AbstractDAL{
-	public void select() {
-		String sqlString = ("SELECT * FROM Timeline");
-		try {
-			PreparedStatement statement = conn.prepareStatement(sqlString);
-			ResultSet results = statement.executeQuery();
-			while(results.next()){
-				String mid = results.getString("text");
-				System.out.println(mid);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-	
 	public void addAll2Timeline(List<Status> _statusList){
 		if(null==_statusList || _statusList.size()==0) return;
 		

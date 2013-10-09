@@ -70,18 +70,20 @@ public class UserProfileCrawler {
 			token = Authen.getToken();
 			fs.setToken(token);
 			String seedName;
-			if(0==unamePool.size()){
-				seedName = rootUname;
-				unamePool.add(seedName);
+			synchronized (unamePool) {
+				if(0==unamePool.size()){
+					seedName = rootUname;
+					unamePool.add(seedName);
+				}
 			}
 			UserDAL uDal = new UserDAL();
-			while(unamePool.size()>0)
+			while((seedName = unamePool.poll())!=null)
 			{
-				seedName = unamePool.poll();
-				List<User> userlist = fs.getFollowersByName(seedName).getUsers();
+				List<User> userlist = fs.getFriendsByScreenName(seedName).getUsers();
+				uDal.addAll2Timeline(userlist);
 				for (User user : userlist) {
 					String uameString = user.getScreenName();
-					uDal.add2User(user.getId(), user.getScreenName(), user.getLocation(), user.getGender(),  user.getUrl(), new java.sql.Date(user.getCreatedAt().getTime()));
+					//uDal.add2User(user.getId(), user.getScreenName(), user.getLocation(), user.getGender(),  user.getUrl(), new java.sql.Date(user.getCreatedAt().getTime()));
 					if(unamePool.size()<poolCapacity && !unamePool.contains(uameString))
 					{
 						unamePool.add(uameString);

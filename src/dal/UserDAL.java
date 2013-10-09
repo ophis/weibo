@@ -4,8 +4,79 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import weibo4j.model.User;
 
 public class UserDAL extends AbstractDAL{
+	
+	public void addAll2Timeline(List<User> _userList){
+		if(null==_userList || _userList.size()==0) return;
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT uid FROM User WHERE uid IN(");
+		int size = _userList.size();
+		for(int i=0; i<size;i++){
+			if(i == size-1){
+				sql.append("?)");
+			}
+			else {
+				sql.append("?,");
+			}
+		}
+		try {
+			PreparedStatement selectStatement = conn.prepareStatement(sql.toString());
+			HashMap<String, Integer> uid2pos = new HashMap<String, Integer>();
+			for(int i=0;i<size;i++){
+				String uid = _userList.get(i).getId();
+				selectStatement.setString(i+1, uid);
+				uid2pos.put(uid,i);
+			}
+			
+			ResultSet results = selectStatement.executeQuery();
+			while(results.next()){
+				String uid = results.getString("uid");
+				_userList.remove(uid2pos.get(uid));
+			}
+			selectStatement.close();
+			if(_userList.size()>0){
+				StringBuffer insertSql = new StringBuffer("INSERT INTO User(uid,screen_name,location,gender,url,created_at) VALUES");
+				for(int i=0;i<_userList.size();i++)
+				{
+					if(i==_userList.size()-1)
+						insertSql.append("(?,?,?,?,?,?)");
+					else {
+						insertSql.append("(?,?,?,?,?,?),");
+					}
+				}
+				PreparedStatement insertStatement = conn.prepareStatement(insertSql.toString());
+				for (int i=0;i<_userList.size();i++) {
+				//TODO construct sql statement
+					User s = _userList.get(i);
+					String uid = s.getId();
+					String screen_name = s.getScreenName();
+					String location = s.getLocation();
+					String gender = s.getGender();
+					String url = s.getUrl();
+					Date date = new java.sql.Date(s.getCreatedAt().getTime());
+					insertStatement.setString(6*i+1, uid);
+					insertStatement.setString(6*i+2, screen_name);
+					insertStatement.setString(6*i+3, location);
+					insertStatement.setString(6*i+4, gender);
+					insertStatement.setString(6*i+5, url);
+					insertStatement.setDate(6*i+6, date);
+				}
+				insertStatement.execute();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+
+	
 	private int insert2User(String _uid, String _screenName, String _location, String _gender, /*String _description, */String _url, Date _createdAt) {
 		try {
 			PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO User(uid,screen_name,location,gender,url,created_at) VALUES(?,?,?,?,?,?)");
