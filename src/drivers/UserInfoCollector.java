@@ -5,7 +5,7 @@ import authentication.Authen;
 
 public class UserInfoCollector {
 	public static void main(String[] args) {
-		int threadCount = 1;
+		int threadCount = 5;
 		Authen.init();
 		UserProfileCrawler.init(null);
 		Thread[] threads = new Thread[threadCount];

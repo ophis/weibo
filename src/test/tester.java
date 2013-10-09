@@ -1,11 +1,6 @@
 package test;
 
-import java.util.HashSet;
-
-import weibo4j.Timeline;
-
 import core.TimelineCrawler;
-import dal.TimelineDAL;
 import authentication.Authen;
 
 public class tester {
