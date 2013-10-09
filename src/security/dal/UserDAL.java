@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import weibo4j.model.User;
@@ -14,70 +12,40 @@ public class UserDAL extends AbstractDAL{
 	
 	public void addAll2Timeline(List<User> _userList){
 		if(null==_userList || _userList.size()==0) return;
-		
-		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT uid FROM User WHERE uid IN(");
-		int size = _userList.size();
-		for(int i=0; i<size;i++){
-			if(i == size-1){
-				sql.append("?)");
-			}
-			else {
-				sql.append("?,");
-			}
-		}
-		try {			
-			HashMap<String, Integer> uid2pos = new HashMap<String, Integer>();
-			PreparedStatement selectStatement = conn.prepareStatement(sql.toString());
-			for(int i=0;i<size;i++){
-				String uid = _userList.get(i).getId();
-				selectStatement.setString(i+1, uid);
-				uid2pos.put(uid, i);
-			}
 
-			ResultSet results = selectStatement.executeQuery();
-			Object [] user = _userList.toArray();
-			while(results.next()){
-				String uid = results.getString("uid");
-				user[uid2pos.get(uid)]=null;
-				//uid2user.remove(uid);
-			}
-			selectStatement.close();
+		try {			
 			
-			ArrayList<User> users = new ArrayList<User>();
-			for (Object object : user) {
-				if(object!=null){
-					users.add((User)object);
-				}
-			}
 			//User[] users=(User[])uid2user.values().toArray();
 			
-			if(users.size()>0){
-				StringBuffer insertSql = new StringBuffer("INSERT INTO User(uid,screen_name,location,gender,url,created_at) VALUES");
-				for(int i=0;i<users.size();i++)
+			if(_userList.size()>0){
+				StringBuffer insertSql = new StringBuffer("INSERT IGNORE INTO User(uid,screen_name,location,gender,url,created_at,name) VALUES");
+				for(int i=0;i<_userList.size();i++)
 				{
-					if(i==users.size()-1)
-						insertSql.append("(?,?,?,?,?,?)");
+					if(i==_userList.size()-1)
+						insertSql.append("(?,?,?,?,?,?,?)");
 					else {
-						insertSql.append("(?,?,?,?,?,?),");
+						insertSql.append("(?,?,?,?,?,?,?),");
 					}
 				}
 				PreparedStatement insertStatement = conn.prepareStatement(insertSql.toString());
-				for (int i=0;i<users.size();i++) {
+				int count=7;
+				for (int i=0;i<_userList.size();i++) {
 				//construct sql statement
-					User s = users.get(i);
+					User s = _userList.get(i);
 					String uid = s.getId();
+					String name = s.getName();
 					String screen_name = s.getScreenName();
 					String location = s.getLocation();
 					String gender = s.getGender();
 					String url = s.getUrl();
 					Date date = new java.sql.Date(s.getCreatedAt().getTime());
-					insertStatement.setString(6*i+1, uid);
-					insertStatement.setString(6*i+2, screen_name);
-					insertStatement.setString(6*i+3, location);
-					insertStatement.setString(6*i+4, gender);
-					insertStatement.setString(6*i+5, url);
-					insertStatement.setDate(6*i+6, date);
+					insertStatement.setString(count*i+1, uid);
+					insertStatement.setString(count*i+2, screen_name);
+					insertStatement.setString(count*i+3, location);
+					insertStatement.setString(count*i+4, gender);
+					insertStatement.setString(count*i+5, url);
+					insertStatement.setDate(count*i+6, date);
+					insertStatement.setString(count*i+7,name);
 				}
 				insertStatement.execute();
 				insertStatement.close();

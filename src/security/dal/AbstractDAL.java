@@ -16,7 +16,6 @@ abstract class AbstractDAL {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/SecurityAndPrivacy?"+
 												"user=root&password=wrnmbydh&useUnicode=true");
 			System.out.println("Link to database(SecurityAndPrivacy) successful!");
-			this.createTables();
 		} catch (SQLException e) {
 			// try to create a database
 			if((e instanceof MySQLSyntaxErrorException)){
@@ -56,8 +55,6 @@ abstract class AbstractDAL {
 					"uid VARCHAR(20) NOT NULL, " +
 					"screen_name VARCHAR(40) NOT NULL,"+
 					"name VARCHAR(10),"+
-					//"class VARCHAR(4),"+
-					//"description VARCHAR(140) CHARACTER SET utf8mb4,"+
 					"url VARCHAR(200),"+
 					"location VARCHAR(20),"+
 					"gender VARCHAR(1),"+
@@ -71,7 +68,7 @@ abstract class AbstractDAL {
 					"allow_all_act_msg BOOLEAN,"+
 					"verified BOOLEAN,"+
 					"allow_all_comment BOOLEAN,"+
-					"PRIMARY KEY(id))";
+					"PRIMARY KEY(id),UNIQUE index_unique (uid))";
 			String createTableTimeline = "CREATE TABLE IF NOT EXISTS Timeline " +
 					"(id INT NOT NULL AUTO_INCREMENT," +
 					"mid VARCHAR(30) NOT NULL, " +
@@ -80,6 +77,14 @@ abstract class AbstractDAL {
 					"text LONGTEXT,"+
 					"created_at DATE,"+
 					"inReplyUid VARCHAR(10), " +
+					"PRIMARY KEY(id),UNIQUE index_unique (mid))";
+			String createTableComment = "CREATE TABLE IF NOT EXISTS Comment " +
+					"(id VARCHAR(30) NOT NULL," +
+					"mid VARCHAR(30) NOT NULL, " +
+					"uid VARCHAR(20) NOT NULL, " +
+					"uscreen_name VARCHAR(40) NOT NULL," +
+					"text LONGTEXT,"+
+					"created_at DATE,"+
 					"PRIMARY KEY(id))";
 			Statement statement;
 			try {
@@ -87,6 +92,7 @@ abstract class AbstractDAL {
 				System.out.println("Try to create tables if not exists...");
 				statement.executeUpdate(createTableUser);
 				statement.executeUpdate(createTableTimeline);
+				statement.executeUpdate(createTableComment);
 				System.out.println("Create tables successfully!");
 				statement.close();
 			} catch (SQLException e) {
