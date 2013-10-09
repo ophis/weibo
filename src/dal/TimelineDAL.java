@@ -34,7 +34,8 @@ public class TimelineDAL extends AbstractDAL{
 			ResultSet results = selectStatement.executeQuery();
 			while(results.next()){
 				String mid = results.getString("mid");
-				_statusList.remove(mid2pos.get(mid));
+				int index = mid2pos.get(mid);
+				_statusList.remove(index);
 			}
 			selectStatement.close();
 			if(_statusList.size()>0){

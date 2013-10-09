@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,35 +26,45 @@ public class UserDAL extends AbstractDAL{
 				sql.append("?,");
 			}
 		}
-		try {
-			PreparedStatement selectStatement = conn.prepareStatement(sql.toString());
+		try {			
 			HashMap<String, Integer> uid2pos = new HashMap<String, Integer>();
+			PreparedStatement selectStatement = conn.prepareStatement(sql.toString());
 			for(int i=0;i<size;i++){
 				String uid = _userList.get(i).getId();
 				selectStatement.setString(i+1, uid);
-				uid2pos.put(uid,i);
+				uid2pos.put(uid, i);
 			}
-			
+
 			ResultSet results = selectStatement.executeQuery();
+			Object [] user = _userList.toArray();
 			while(results.next()){
 				String uid = results.getString("uid");
-				_userList.remove(uid2pos.get(uid));
+				user[uid2pos.get(uid)]=null;
+				//uid2user.remove(uid);
 			}
-			selectStatement.close();
-			if(_userList.size()>0){
+			
+			ArrayList<User> users = new ArrayList<User>();
+			for (Object object : user) {
+				if(object!=null){
+					users.add((User)object);
+				}
+			}
+			//User[] users=(User[])uid2user.values().toArray();
+			
+			if(users.size()>0){
 				StringBuffer insertSql = new StringBuffer("INSERT INTO User(uid,screen_name,location,gender,url,created_at) VALUES");
-				for(int i=0;i<_userList.size();i++)
+				for(int i=0;i<users.size();i++)
 				{
-					if(i==_userList.size()-1)
+					if(i==users.size()-1)
 						insertSql.append("(?,?,?,?,?,?)");
 					else {
 						insertSql.append("(?,?,?,?,?,?),");
 					}
 				}
 				PreparedStatement insertStatement = conn.prepareStatement(insertSql.toString());
-				for (int i=0;i<_userList.size();i++) {
-				//TODO construct sql statement
-					User s = _userList.get(i);
+				for (int i=0;i<users.size();i++) {
+				//construct sql statement
+					User s = users.get(i);
 					String uid = s.getId();
 					String screen_name = s.getScreenName();
 					String location = s.getLocation();

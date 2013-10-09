@@ -20,6 +20,6 @@ public class UserInfoCollector {
 			});	
 			threads[i].start();
 		}
-		UserProfileCrawler.storeUidList();
+		//UserProfileCrawler.storeUidList();
 	}
 }
