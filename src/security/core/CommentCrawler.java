@@ -9,16 +9,15 @@ import weibo4j.model.Comment;
 
 
 public class CommentCrawler {
-	public int crawl(){
+	public int crawl(String mid) throws Exception{
 		Comments cm = new Comments();
     	try {
-	    	cm.setToken(Authen.getToken());
-	    	String mid = "3631681900630653";
+	    	cm.setToken(Authen.getAuthen().getToken());
 	    	List<Comment> comments= cm.getCommentById(mid).getComments();
 	    	CommentDAL cDal = new CommentDAL();
 	    	cDal.addAll2Comment(comments);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 		return 0;
 	}

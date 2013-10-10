@@ -63,12 +63,13 @@ public class UserProfileCrawler {
 		crawl = false;
 	}
 	
-	public int crawl(){
+	public int crawl() throws Exception{
 		Friendships fs = new Friendships();
 		String token;
 		boolean firstround = true;
 		try {
-			token = Authen.getToken();
+			token = Authen.getAuthen().getToken();
+			if(token==null) return -1;
 			fs.setToken(token);
 			String seedName;
 			synchronized (unamePool) {
@@ -82,6 +83,7 @@ public class UserProfileCrawler {
 			{
 //			seedName = unamePool.poll();
 				List<User> userlist = fs.getFriendsByScreenName(seedName).getUsers();
+				userlist.addAll(fs.getFollowersByName(seedName).getUsers());
 				uDal.addAll2Timeline(userlist);
 				for (User user : userlist) {
 					String uameString = user.getScreenName();
@@ -95,7 +97,8 @@ public class UserProfileCrawler {
 		} catch (Exception e) {
 			if(e instanceof WeiboException){
 				WeiboException weiboException = (WeiboException)e;
-				if(weiboException.getErrorCode()==10023){
+				int errorcode=weiboException.getErrorCode();
+				if(errorcode==10023||errorcode==10022){
 					if(firstround){ 
 						return crawl();
 					}
@@ -104,8 +107,7 @@ public class UserProfileCrawler {
 					}
 				}
 			}
-			e.printStackTrace();
-			return -1;
+			throw e;
 		}
 		return 0;
 	}

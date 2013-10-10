@@ -21,19 +21,20 @@ public class Authen {
 		accoutList = getFromText("config/accounts");
 		keyList = getFromText("config/appKeys");
 	}
-	
-	public static String getToken() throws Exception{
-		int ac=0;
-		int kc=0;
+	public static Authen getAuthen()
+	{
+		return authen;
+	}
+	public String getToken() throws Exception{
+		int ac;
+		int kc;
 		synchronized (accountCounter) {
 			ac = accountCounter;
 			kc = keyCounter;
-			accountCounter++;
-			accountCounter = accountCounter%accoutList.size();
+			accountCounter = (++accountCounter)%accoutList.size();
 			if(accountCounter==0){
 				synchronized (keyCounter) {
-					keyCounter++;
-					keyCounter = keyCounter%keyList.size();
+					keyCounter = (++keyCounter)%keyList.size();
 				}
 			}
 		}
@@ -123,6 +124,7 @@ public class Authen {
 		return list;
 	}
 	
+	final private static Authen authen = new Authen();
 	private static Integer accountCounter=0;
 	private static Integer keyCounter=0;
 	private static ArrayList<String> accoutList;
