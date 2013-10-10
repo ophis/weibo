@@ -81,7 +81,7 @@ public class UserProfileCrawler {
 				// seedName = unamePool.poll();
 				List<User> userlist = fs.getFriendsByScreenName(seedName)
 						.getUsers();
-				userlist.addAll(fs.getFollowersByName(seedName).getUsers());
+				userlist.addAll(fs.getFollowersByName(seedName,200,0).getUsers());
 				uDal.addAll2Timeline(userlist);
 				for (User user : userlist) {
 					String uameString = user.getScreenName();
@@ -110,7 +110,7 @@ public class UserProfileCrawler {
 	}
 
 	private static boolean crawl = true;
-	private static int poolCapacity = 1500;
+	private static int poolCapacity = 2500;
 	private static ArrayBlockingQueue<String> unamePool;
 	private static String rootUname;
 }

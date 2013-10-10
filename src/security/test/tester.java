@@ -1,13 +1,14 @@
 package security.test;
 
 import security.authentication.Authen;
+import security.drivers.RefreshToken;
 
 public class tester {
 	
     public static void main(String[] args) throws Exception
     {
     	Authen.init();
-    	final t t1 = new t();
+    	final RefreshToken t1 = new RefreshToken();
     	Thread thread1=new Thread(new Runnable() {
 			public void run() {
 				try {

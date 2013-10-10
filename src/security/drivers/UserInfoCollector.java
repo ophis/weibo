@@ -5,8 +5,8 @@ import security.core.UserProfileCrawler;
 
 public class UserInfoCollector {
 	public static void main(String[] args) throws InterruptedException {
-//		while(true){
-			int threadCount = 1;
+		while(true){
+			int threadCount = 8;
 			Authen.init();
 			UserProfileCrawler.init(null);
 			Thread[] threads = new Thread[threadCount];
@@ -30,6 +30,6 @@ public class UserInfoCollector {
 				threads[i].join();
 			}
 			UserProfileCrawler.storeUidList();
-//		}
+		}
 	}
 }

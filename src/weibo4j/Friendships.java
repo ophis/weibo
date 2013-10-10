@@ -47,8 +47,8 @@ public class Friendships extends Weibo{
 			throws WeiboException {
 		return User.constructWapperUsers(client.get(
 				WeiboConfig.getValue("baseURL") + "friendships/friends.json",
-				new PostParameter[] { new PostParameter("screen_name",
-						screen_name) }));
+				new PostParameter[] { new PostParameter("screen_name", screen_name),
+						new PostParameter("count", 200)}));
 	}
 
 	/**
