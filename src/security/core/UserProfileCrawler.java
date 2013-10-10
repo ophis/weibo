@@ -11,21 +11,21 @@ import java.util.concurrent.ArrayBlockingQueue;
 import security.authentication.Authen;
 import security.dal.UserDAL;
 
-
 import weibo4j.Friendships;
 import weibo4j.model.User;
 import weibo4j.model.WeiboException;
 
-
 public class UserProfileCrawler {
-	public static void init(String _rootUid){
-		UserProfileCrawler.unamePool = new ArrayBlockingQueue<String>(poolCapacity);
+	public static void init(String _rootUid) {
+		UserProfileCrawler.unamePool = new ArrayBlockingQueue<String>(
+				poolCapacity);
 		File file = new File("config/unameList");
 		try {
-			if(!file.exists()) return;
+			if (!file.exists())
+				return;
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String tempString;
-			while((tempString=reader.readLine())!=null){
+			while ((tempString = reader.readLine()) != null) {
 				unamePool.add(tempString);
 			}
 			reader.close();
@@ -34,75 +34,72 @@ public class UserProfileCrawler {
 		}
 		rootUname = unamePool.poll();
 	}
-	
-	public static void storeUidList(){
+
+	public static void storeUidList() {
 		File file = new File("config/unameList");
 		try {
-			if(!file.exists()){
+			if (!file.exists()) {
 				file.createNewFile();
 			}
 			FileWriter fWriter = new FileWriter(file);
 			BufferedWriter bWriter = new BufferedWriter(fWriter);
 			for (String uameString : unamePool) {
-				bWriter.write(uameString+"\n");
+				bWriter.write(uameString + "\n");
 			}
 			bWriter.close();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
+
 	public static void start() {
 		crawl = true;
 	}
-	
+
 	public static void stop() {
 		crawl = false;
 	}
-	
-	public int crawl() throws Exception{
+
+	public int crawl() throws Exception {
 		Friendships fs = new Friendships();
 		String token;
 		boolean firstround = true;
 		try {
 			token = Authen.getAuthen().getToken();
-			if(token==null) return -1;
+			if (token == null)
+				return -1;
 			fs.setToken(token);
 			String seedName;
 			synchronized (unamePool) {
-				if(0==unamePool.size()){
+				if (0 == unamePool.size()) {
 					seedName = rootUname;
 					unamePool.add(seedName);
 				}
 			}
 			UserDAL uDal = new UserDAL();
-			while((seedName = unamePool.poll())!=null && crawl)
-			{
-//			seedName = unamePool.poll();
-				List<User> userlist = fs.getFriendsByScreenName(seedName).getUsers();
+			while ((seedName = unamePool.poll()) != null && crawl) {
+				// seedName = unamePool.poll();
+				List<User> userlist = fs.getFriendsByScreenName(seedName)
+						.getUsers();
 				userlist.addAll(fs.getFollowersByName(seedName).getUsers());
 				uDal.addAll2Timeline(userlist);
 				for (User user : userlist) {
 					String uameString = user.getScreenName();
-					if(unamePool.size()<poolCapacity && !unamePool.contains(uameString))
-					{
+					if (unamePool.size() < poolCapacity
+							&& !unamePool.contains(uameString)) {
 						unamePool.add(uameString);
 					}
 					firstround = false;
 				}
 			}
 		} catch (Exception e) {
-			if(e instanceof WeiboException){
-				WeiboException weiboException = (WeiboException)e;
-				int errorcode=weiboException.getErrorCode();
-				if(errorcode==10023||errorcode==10022){
-					if(firstround){ 
+			if (e instanceof WeiboException) {
+				WeiboException weiboException = (WeiboException) e;
+				int errorcode = weiboException.getErrorCode();
+				if (errorcode == 10023 || errorcode == 10022) {
+					if (firstround) {
 						return crawl();
-					}
-					else {
+					} else {
 						return -1;
 					}
 				}
@@ -111,9 +108,9 @@ public class UserProfileCrawler {
 		}
 		return 0;
 	}
-	
+
 	private static boolean crawl = true;
-	private static int poolCapacity=1500;
+	private static int poolCapacity = 1500;
 	private static ArrayBlockingQueue<String> unamePool;
 	private static String rootUname;
 }
