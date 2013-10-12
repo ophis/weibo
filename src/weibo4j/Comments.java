@@ -28,7 +28,7 @@ public class Comments extends Weibo{
 	public CommentWapper getCommentById(String id) throws WeiboException {
 		return Comment.constructWapperComments(client.get(
 				WeiboConfig.getValue("baseURL") + "comments/show.json",
-				new PostParameter[] { new PostParameter("id", id) }));
+				new PostParameter[] { new PostParameter("id", id),new PostParameter("count", 200) }));
 	}
 
 	/**

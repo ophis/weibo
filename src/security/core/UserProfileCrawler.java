@@ -109,7 +109,7 @@ public class UserProfileCrawler {
 		return 0;
 	}
 
-	private static boolean crawl = true;
+	public static boolean crawl = true;
 	private static int poolCapacity = 2500;
 	private static ArrayBlockingQueue<String> unamePool;
 	private static String rootUname;

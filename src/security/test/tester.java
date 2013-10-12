@@ -2,13 +2,13 @@ package security.test;
 
 import security.authentication.Authen;
 import security.drivers.RefreshToken;
+import sun.reflect.generics.tree.Tree;
 
 public class tester {
 	
     public static void main(String[] args) throws Exception
     {
     	Authen.init();
-    	final RefreshToken t1 = new RefreshToken();
     	Thread thread1=new Thread(new Runnable() {
 			public void run() {
 				try {
@@ -38,7 +38,8 @@ public class tester {
 //		}
 		thread1.start();
 //		thread2.start();
-		thread1.join();
+		Thread.sleep(1000);
+		thread1.interrupt();
 //		thread2.join();
     	System.out.println();
     }
