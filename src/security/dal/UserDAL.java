@@ -18,17 +18,17 @@ public class UserDAL extends AbstractDAL{
 			//User[] users=(User[])uid2user.values().toArray();
 			
 			if(_userList.size()>0){
-				StringBuffer insertSql = new StringBuffer("INSERT IGNORE INTO User(uid,screen_name,location,gender,url,created_at,name) VALUES");
+				StringBuffer insertSql = new StringBuffer("INSERT IGNORE INTO User(uid,screen_name,location,gender,url,created_at,name,verified,allow_all_act_msg,allow_all_comment) VALUES");
 				for(int i=0;i<_userList.size();i++)
 				{
 					if(i==_userList.size()-1)
-						insertSql.append("(?,?,?,?,?,?,?)");
+						insertSql.append("(?,?,?,?,?,?,?,?,?,?)");
 					else {
-						insertSql.append("(?,?,?,?,?,?,?),");
+						insertSql.append("(?,?,?,?,?,?,?,?,?,?),");
 					}
 				}
 				PreparedStatement insertStatement = conn.prepareStatement(insertSql.toString());
-				int count=7;
+				int count=10;
 				for (int i=0;i<_userList.size();i++) {
 				//construct sql statement
 					User s = _userList.get(i);
@@ -46,6 +46,9 @@ public class UserDAL extends AbstractDAL{
 					insertStatement.setString(count*i+5, url);
 					insertStatement.setDate(count*i+6, date);
 					insertStatement.setString(count*i+7,name);
+					insertStatement.setBoolean(count*i+8, s.isVerified());
+					insertStatement.setBoolean(count*i+9, s.isallowAllActMsg());
+					insertStatement.setBoolean(count*i+10, s.isAllowAllComment());
 				}
 				insertStatement.execute();
 				insertStatement.close();
@@ -91,5 +94,19 @@ public class UserDAL extends AbstractDAL{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getUser(String _uid){
+		try {
+			PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM User WHERE uid=?");
+			selectStatement.setString(1, _uid);
+			ResultSet result = selectStatement.executeQuery();
+			if(result.next()){
+				return result.getString("screen_name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
