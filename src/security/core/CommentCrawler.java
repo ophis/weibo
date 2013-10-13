@@ -16,6 +16,7 @@ public class CommentCrawler {
 	    	List<Comment> comments= cm.getCommentById(mid).getComments();
 	    	CommentDAL cDal = new CommentDAL();
 	    	cDal.addAll2Comment(comments);
+	    	cDal.closeConnection();
 		} catch (Exception e) {
 			throw e;
 		}

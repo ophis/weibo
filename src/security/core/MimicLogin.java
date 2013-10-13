@@ -38,7 +38,6 @@ public class MimicLogin {
 		while ((line = br.readLine()) != null) {
 			sb.append(line);
 		}
-		System.out.print(sb.toString());
 		return sb.toString();
 	}
 }

@@ -25,8 +25,7 @@ public class UserInfoCollector {
 									if(UserProfileCrawler.crawl)
 										uc.crawl();
 									else{
-										Thread.sleep(1000);
-										return;
+										Thread.sleep(5000);
 									}
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -49,47 +48,97 @@ public class UserInfoCollector {
 			}
 		});
 		userThread.start();
-//		Thread timeThread = new Thread(new Runnable() {		
-//			@Override
-//			public void run() {
-//				// TODO Auto-generated method stub
-//				while(true){
-//					Thread[] threads2 = new Thread[2];
-//					for (int i = 0; i < 2; i++) {
-//						
-//						threads2[i] = new Thread(new Runnable() {
-//							@Override
-//							public void run() {
-//								// TODO Auto-generated method stub
-//								TimelineCrawler tc = new TimelineCrawler();
-//								try {
-//									tc.crawlPublic();
-//								} catch (Exception e) {
-//									if (e instanceof WeiboException) {
-//										WeiboException weiboException = (WeiboException) e;
-//										int errorcode = weiboException.getErrorCode();
-//										if (errorcode == 10023 || errorcode == 10022) {
-//										}
-//										else {
-//											e.printStackTrace();
-//										}
-//									}
-//								}
-//							}
-//						});
-//						threads2[i].start();
-//					}
-//					try {
-//						threads2[0].join();
-//						threads2[1].join();
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
-//			}
-//		});
-//		timeThread.start();
+		Thread timeThread = new Thread(new Runnable() {		
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				while(true){
+					Thread[] threads2 = new Thread[2];
+					for (int i = 0; i < 2; i++) {
+						
+						threads2[i] = new Thread(new Runnable() {
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								TimelineCrawler tc = new TimelineCrawler();
+								try {
+									if(UserProfileCrawler.crawl){
+										tc.crawlPublic();
+										Thread.sleep(2000);
+									}
+									else{
+										Thread.sleep(5000);
+									}
+								} catch (Exception e) {
+									if (e instanceof WeiboException) {
+										WeiboException weiboException = (WeiboException) e;
+										int errorcode = weiboException.getErrorCode();
+										if (errorcode == 10023 || errorcode == 10022) {
+										}
+										else {
+											e.printStackTrace();
+										}
+									}
+								}
+							}
+						});
+						threads2[i].start();
+					}
+					try {
+						for(int i=0;i<threads2.length;i++) threads2[i].join();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		timeThread.start();
+		Thread timeThread2 = new Thread(new Runnable() {		
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				while(true){
+					Thread[] threads2 = new Thread[8];
+					for (int i = 0; i < 8; i++) {
+						
+						threads2[i] = new Thread(new Runnable() {
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								TimelineCrawler tc = new TimelineCrawler();
+								try {
+									if(UserProfileCrawler.crawl){
+										tc.crawFromDB();
+									}
+									else{
+										Thread.sleep(5000);
+									}
+								} catch (Exception e) {
+									if (e instanceof WeiboException) {
+										WeiboException weiboException = (WeiboException) e;
+										int errorcode = weiboException.getErrorCode();
+										if (errorcode == 10023 || errorcode == 10022) {
+										}
+										else {
+											e.printStackTrace();
+										}
+									}
+								}
+							}
+						});
+						threads2[i].start();
+					}
+					try {
+						for(int i=0;i<threads2.length;i++) threads2[i].join();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		timeThread2.start();
 		//timing
 		while(true)
 		{

@@ -92,6 +92,7 @@ public class UserProfileCrawler {
 					firstround = false;
 				}
 			}
+			uDal.closeConnection();
 		} catch (Exception e) {
 			if (e instanceof WeiboException) {
 				WeiboException weiboException = (WeiboException) e;

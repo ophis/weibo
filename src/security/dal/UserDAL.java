@@ -1,9 +1,16 @@
 package security.dal;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import weibo4j.model.User;
@@ -14,9 +21,6 @@ public class UserDAL extends AbstractDAL{
 		if(null==_userList || _userList.size()==0) return;
 
 		try {			
-			
-			//User[] users=(User[])uid2user.values().toArray();
-			
 			if(_userList.size()>0){
 				StringBuffer insertSql = new StringBuffer("INSERT IGNORE INTO User(uid,screen_name,location,gender,url,created_at,name,verified,allow_all_act_msg,allow_all_comment) VALUES");
 				for(int i=0;i<_userList.size();i++)
@@ -60,7 +64,6 @@ public class UserDAL extends AbstractDAL{
 		
 	}
 
-	
 	private int insert2User(String _uid, String _screenName, String _location, String _gender, /*String _description, */String _url, Date _createdAt) {
 		try {
 			PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO User(uid,screen_name,location,gender,url,created_at) VALUES(?,?,?,?,?,?)");
@@ -96,14 +99,30 @@ public class UserDAL extends AbstractDAL{
 		}
 	}
 	
-	public String getUser(String _uid){
+	public ArrayList<String> getUser() throws IOException{
 		try {
-			PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM User WHERE uid=?");
-			selectStatement.setString(1, _uid);
+			Integer id = 0;
+			File file = new File("config/id");
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String temp;
+			if((temp=reader.readLine())!=null) id=Integer.parseInt(temp);
+			reader.close();
+			ArrayList<String> uidArrayList = new ArrayList<String>();
+			PreparedStatement selectStatement = conn.prepareStatement("SELECT id,uid FROM User WHERE id>? LIMIT 1000");
+			selectStatement.setString(1, id.toString());
 			ResultSet result = selectStatement.executeQuery();
 			if(result.next()){
-				return result.getString("screen_name");
+				uidArrayList.add(result.getString("uid"));
 			}
+			FileWriter fWriter = new FileWriter(file);
+			BufferedWriter bWriter = new BufferedWriter(fWriter);
+			id+=1000;
+			bWriter.write(id.toString());
+			bWriter.close();
+			return uidArrayList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

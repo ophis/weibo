@@ -1,9 +1,18 @@
 package security.core;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.sun.swing.internal.plaf.metal.resources.metal;
 
 import security.authentication.Authen;
 import security.dal.TimelineDAL;
+import security.dal.UserDAL;
+import sun.misc.Regexp;
 import weibo4j.Timeline;
 import weibo4j.model.Status;
 import weibo4j.model.StatusWapper;
@@ -20,6 +29,7 @@ public class TimelineCrawler {
 				List<Status> status = sw.getStatuses();
 				TimelineDAL td = new TimelineDAL();
 				td.addAll2Timeline(status);
+				td.closeConnection();
 				CommentCrawler cm = new CommentCrawler();
 				for (Status s : status) {
 					if (s.getCommentsCount() > 0)
@@ -47,8 +57,34 @@ public class TimelineCrawler {
 		Timeline tm = new Timeline();
 		try {
 			tm.setToken(Authen.getAuthen().getToken());
-			tm.showStatus(mid);
-		} catch (WeiboException e) {
+			Status s = tm.showStatus(mid);
+			ArrayList<Status> slist = new ArrayList<Status>();
+			slist.add(s);
+			TimelineDAL tDal = new TimelineDAL();
+			tDal.addAll2Timeline(slist);
+			CommentCrawler cm = new CommentCrawler();
+			if (s.getCommentsCount() > 0)
+				try {
+					cm.crawl(s.getMid());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} catch (WeiboException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void crawFromDB(){
+		UserDAL udDal = new UserDAL();
+		try {
+			ArrayList<String> ulist = udDal.getUser();
+			for (String uid : ulist) {
+				crawl(uid);
+			}
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -73,7 +109,20 @@ public class TimelineCrawler {
 		MimicLogin mLogin = new MimicLogin();
 		try {
 			String htmlString = mLogin.getUrlBody(url, cookie);
-			System.out.print(htmlString);
+			HashSet<String> midList = new HashSet<String>();
+			Pattern pattern = Pattern.compile("(\\s|&|;)mid=(\\d{16})");
+			Matcher m = pattern.matcher(htmlString);
+			while(m.find()){
+				midList.add(m.group(2));
+			}
+			Pattern pattern2 = Pattern.compile("(\\s|&|;)mid=\\\\\"(\\d{16})\\\\\"");
+			Matcher m2 = pattern2.matcher(htmlString);
+			while(m2.find()){
+				midList.add(m2.group(2));
+			}
+			for (String mid : midList) {
+				crawlById(mid);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

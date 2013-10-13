@@ -1,5 +1,6 @@
 package security.test;
 
+import security.authentication.Authen;
 import security.core.TimelineCrawler;
 
 public class tester {
@@ -8,6 +9,7 @@ public class tester {
     {
 //    	UserD/.out.println(ud.getUser("1771918757"));
     	TimelineCrawler tcCrawler = new TimelineCrawler();
-    	tcCrawler.crawl("2644969471");
+    	Authen.init();
+    	tcCrawler.crawFromDB();
     }
 }
