@@ -53,8 +53,9 @@ public class UserInfoCollector {
 			public void run() {
 				// TODO Auto-generated method stub
 				while(true){
-					Thread[] threads2 = new Thread[2];
-					for (int i = 0; i < 2; i++) {
+					int count = 1;
+					Thread[] threads2 = new Thread[count];
+					for (int i = 0; i < count; i++) {
 						
 						threads2[i] = new Thread(new Runnable() {
 							@Override
