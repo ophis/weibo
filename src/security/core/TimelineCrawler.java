@@ -62,6 +62,7 @@ public class TimelineCrawler {
 			slist.add(s);
 			TimelineDAL tDal = new TimelineDAL();
 			tDal.addAll2Timeline(slist);
+			tDal.closeConnection();
 			CommentCrawler cm = new CommentCrawler();
 			if (s.getCommentsCount() > 0)
 				try {
@@ -81,6 +82,7 @@ public class TimelineCrawler {
 		UserDAL udDal = new UserDAL();
 		try {
 			ArrayList<String> ulist = udDal.getUser();
+			udDal.closeConnection();
 			for (String uid : ulist) {
 				crawl(uid);
 			}
