@@ -77,7 +77,10 @@ public class UserProfileCrawler {
 				}
 			}
 			UserDAL uDal = new UserDAL();
-			while ((seedName = unamePool.poll()) != null && crawl) {
+			synchronized (unamePool) {
+				seedName = unamePool.poll();
+			}
+			while (seedName != null && crawl) {
 				// seedName = unamePool.poll();
 				List<User> userlist = fs.getFriendsByScreenName(seedName)
 						.getUsers();

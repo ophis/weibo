@@ -3,6 +3,7 @@ package security.drivers;
 import security.authentication.Authen;
 import security.core.TimelineCrawler;
 import security.core.UserProfileCrawler;
+import security.dal.UserDAL;
 import weibo4j.model.WeiboException;
 
 public class UserInfoCollector {
@@ -100,6 +101,7 @@ public class UserInfoCollector {
 			public void run() {
 				// TODO Auto-generated method stub
 				while(true){
+					UserDAL.iniId();
 					Thread[] threads2 = new Thread[8];
 					for (int i = 0; i < 8; i++) {
 						
@@ -136,6 +138,7 @@ public class UserInfoCollector {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					UserDAL.writeId();
 				}
 			}
 		});

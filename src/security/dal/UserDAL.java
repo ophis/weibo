@@ -113,7 +113,27 @@ public class UserDAL extends AbstractDAL{
 	
 	public ArrayList<String> getUser() throws IOException{
 		try {
-			Integer id = 0;
+			ArrayList<String> uidArrayList = new ArrayList<String>();
+			PreparedStatement selectStatement = conn.prepareStatement("SELECT id,uid FROM User WHERE id>? LIMIT 200");
+			selectStatement.setString(1, id.toString());
+			ResultSet result = selectStatement.executeQuery();
+			if(result.next()){
+				uidArrayList.add(result.getString("uid"));
+			}
+			synchronized (id) {
+				id+=200;
+			}
+			return uidArrayList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static Integer id=0;
+	public static void iniId()
+	{
+		try{
 			File file = new File("config/id");
 			if (!file.exists()) {
 				file.createNewFile();
@@ -122,22 +142,24 @@ public class UserDAL extends AbstractDAL{
 			String temp;
 			if((temp=reader.readLine())!=null) id=Integer.parseInt(temp);
 			reader.close();
-			ArrayList<String> uidArrayList = new ArrayList<String>();
-			PreparedStatement selectStatement = conn.prepareStatement("SELECT id,uid FROM User WHERE id>? LIMIT 1000");
-			selectStatement.setString(1, id.toString());
-			ResultSet result = selectStatement.executeQuery();
-			if(result.next()){
-				uidArrayList.add(result.getString("uid"));
-			}
-			FileWriter fWriter = new FileWriter(file);
-			BufferedWriter bWriter = new BufferedWriter(fWriter);
-			id+=1000;
-			bWriter.write(id.toString());
-			bWriter.close();
-			return uidArrayList;
-		} catch (SQLException e) {
+		}
+		catch(Exception e)
+		{
 			e.printStackTrace();
 		}
-		return null;
+	}
+	
+	public static void writeId()
+	{
+		try {
+			File file = new File("config/id");
+			FileWriter fWriter = new FileWriter(file);
+			BufferedWriter bWriter = new BufferedWriter(fWriter);
+			id+=200;
+			bWriter.write(id.toString());
+			bWriter.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }
