@@ -87,9 +87,10 @@ public class UserProfileCrawler {
 				for (User user : userlist) {
 					uDal.addConnection(seedName, user.getScreenName());
 				}
-				List<User> fUsers = fs.getFollowersByName(seedName,200,0).getUsers();
+				List<User> fUsers = fs.getFollowersByName(seedName, 200, 0)
+						.getUsers();
 				for (User user : fUsers) {
-					uDal.addConnection(user.getScreenName(),seedName);
+					uDal.addConnection(user.getScreenName(), seedName);
 				}
 				userlist.addAll(fUsers);
 				uDal.addAll2Timeline(userlist);

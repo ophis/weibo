@@ -13,7 +13,7 @@ public class UserInfoCollector {
 			public void run() {
 				// TODO Auto-generated method stub
 				while (true) {
-					int threadCount = 16;
+					int threadCount = 8;
 					Authen.init();
 					UserProfileCrawler.init(null);
 					Thread[] threads = new Thread[threadCount];
