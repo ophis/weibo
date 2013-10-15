@@ -7,12 +7,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.sun.swing.internal.plaf.metal.resources.metal;
-
 import security.authentication.Authen;
 import security.dal.TimelineDAL;
 import security.dal.UserDAL;
-import sun.misc.Regexp;
 import weibo4j.Timeline;
 import weibo4j.model.Status;
 import weibo4j.model.StatusWapper;
