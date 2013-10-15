@@ -16,6 +16,7 @@ abstract class AbstractDAL {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/SecurityAndPrivacy?"+
 												"user=root&password=wrnmbydh&useUnicode=true");
 			System.out.println("Link to database(SecurityAndPrivacy) successful!");
+			//this.createTables();
 		} catch (SQLException e) {
 			// try to create a database
 			if((e instanceof MySQLSyntaxErrorException)){
@@ -86,6 +87,11 @@ abstract class AbstractDAL {
 					"text LONGTEXT,"+
 					"created_at DATE,"+
 					"PRIMARY KEY(id))";
+			String createTableConnection = "CREATE TABLE IF NOT EXISTS Connection " +
+					"(id INT NOT NULL AUTO_INCREMENT," +
+					"uscreen_name VARCHAR(40) NOT NULL, " +
+					"fscreen_name VARCHAR(40) NOT NULL, " +
+					"PRIMARY KEY(id))";
 			Statement statement;
 			try {
 				statement = conn.createStatement();
@@ -93,6 +99,7 @@ abstract class AbstractDAL {
 				statement.executeUpdate(createTableUser);
 				statement.executeUpdate(createTableTimeline);
 				statement.executeUpdate(createTableComment);
+				statement.executeUpdate(createTableConnection);
 				System.out.println("Create tables successfully!");
 				statement.close();
 			} catch (SQLException e) {

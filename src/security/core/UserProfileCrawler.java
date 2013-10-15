@@ -81,7 +81,14 @@ public class UserProfileCrawler {
 				// seedName = unamePool.poll();
 				List<User> userlist = fs.getFriendsByScreenName(seedName)
 						.getUsers();
-				userlist.addAll(fs.getFollowersByName(seedName,200,0).getUsers());
+				for (User user : userlist) {
+					uDal.addConnection(seedName, user.getScreenName());
+				}
+				List<User> fUsers = fs.getFollowersByName(seedName,200,0).getUsers();
+				for (User user : fUsers) {
+					uDal.addConnection(user.getScreenName(),seedName);
+				}
+				userlist.addAll(fUsers);
 				uDal.addAll2Timeline(userlist);
 				for (User user : userlist) {
 					String uameString = user.getScreenName();

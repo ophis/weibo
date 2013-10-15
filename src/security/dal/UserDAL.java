@@ -99,6 +99,18 @@ public class UserDAL extends AbstractDAL{
 		}
 	}
 	
+	public void addConnection(String _uscreen_name, String _fscreen_name){
+		try {
+			PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO Connection(uscreen_name,fscreen_name) VALUES(?,?) ");
+			insertStatement.setString(1, _uscreen_name);
+			insertStatement.setString(2, _fscreen_name);
+			insertStatement.execute();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	public ArrayList<String> getUser() throws IOException{
 		try {
 			Integer id = 0;
