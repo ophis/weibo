@@ -76,12 +76,13 @@ public class UserProfileCrawler {
 					unamePool.add(seedName);
 				}
 			}
-			UserDAL uDal = new UserDAL();
-			synchronized (unamePool) {
-				seedName = unamePool.poll();
-			}
-			while (seedName != null && crawl) {
+			
+//			synchronized (unamePool) {
+//				seedName = unamePool.poll();
+//			}
+			while ((seedName = unamePool.poll()) != null && crawl) {
 				// seedName = unamePool.poll();
+				UserDAL uDal = new UserDAL();
 				List<User> userlist = fs.getFriendsByScreenName(seedName)
 						.getUsers();
 				for (User user : userlist) {
@@ -102,8 +103,9 @@ public class UserProfileCrawler {
 					}
 					firstround = false;
 				}
-			}
-			uDal.closeConnection();
+				uDal.closeConnection();
+				storeUidList();
+			}	
 		} catch (Exception e) {
 			if (e instanceof WeiboException) {
 				WeiboException weiboException = (WeiboException) e;

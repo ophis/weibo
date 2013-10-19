@@ -43,8 +43,7 @@ public class UserInfoCollector {
 							e.printStackTrace();
 						}
 					}
-					if(UserProfileCrawler.crawl)
-						UserProfileCrawler.storeUidList();
+					
 				}
 			}
 		});
@@ -102,8 +101,9 @@ public class UserInfoCollector {
 				// TODO Auto-generated method stub
 				while(true){
 					UserDAL.iniId();
-					Thread[] threads2 = new Thread[8];
-					for (int i = 0; i < 8; i++) {
+					int count=8;
+					Thread[] threads2 = new Thread[count];
+					for (int i = 0; i < count; i++) {
 						
 						threads2[i] = new Thread(new Runnable() {
 							@Override
